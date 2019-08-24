@@ -22,19 +22,17 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/back_icon"
+                    android:id="@+id/btn_back"/>
+
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
-
-        <TextView
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Добро пожаловать!"
-            android:textColor="#004478"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:id="@+id/to_link" />
 
         <EditText
             android:textColor="#004478"
@@ -47,11 +45,29 @@
         <EditText
             android:textColor="#004478"
             android:layout_margin="16dp"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/user_password"
+            android:inputType="textPassword"
             android:hint="Пароль" />
+
+        <EditText
+            android:textColor="#004478"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_repassword"
+            android:inputType="textPassword"
+            android:hint="Повтор пароля" />
+
+        <EditText
+            android:textColor="#004478"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_name"
+            android:hint="ФИО" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,24 +85,7 @@
                 android:id="@+id/btn_signup"
                 android:text="Регистрация"/>
 
-            <Button
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#0a55a6"
-                android:textColor="#fff"
-                android:id="@+id/btn_signin"
-                android:text="Вход"/>
-
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textSize="16sp"
-            android:text="Приложение команды [LIFE] Laboratory созданное для помощи в нахождении инвесторов. Так же поможет вам найти, в какой проект можно инвестировать"/>
 
     </LinearLayout>
 

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -17,20 +17,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.lifelaboratory.asi.entity.StatusSignIn;
 import ru.lifelaboratory.asi.entity.StatusSignUp;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
-public class MainActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
-    EditText userLogin, userPassword;
+    EditText userLogin, userPassword, userRePassword, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,42 +38,42 @@ public class MainActivity extends AppCompatActivity {
 
         userLogin = (EditText) findViewById(R.id.user_login);
         userPassword = (EditText) findViewById(R.id.user_password);
+        userRePassword = (EditText) findViewById(R.id.user_repassword);
+        userName = (EditText) findViewById(R.id.user_name);
 
-        ((TextView) findViewById(R.id.to_link)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LinkActivity.class));
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
             }
         });
 
         ((Button) findViewById(R.id.btn_signup)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SignUpActivity.class));
-            }
-        });
+                if (!userPassword.getText().toString().equals(userRePassword.getText().toString())) {
+                    Toast.makeText(SignUpActivity.this, "Пароли не сходятся", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        ((Button) findViewById(R.id.btn_signin)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                         addConverterFactory(GsonConverterFactory.create()).build();
-                UserService signInService = retrofit.create(UserService.class);
-                Call<StatusSignIn> signInInfo = signInService.auth(new User(userLogin.getText().toString(), userPassword.getText().toString()));
-                signInInfo.enqueue(new Callback<StatusSignIn>() {
+                UserService signUpService = retrofit.create(UserService.class);
+                Call<StatusSignUp> signUpInfo = signUpService.register(new User(userName.getText().toString(), userLogin.getText().toString(), userPassword.getText().toString()));
+                signUpInfo.enqueue(new Callback<StatusSignUp>() {
                     @Override
-                    public void onResponse(Call<StatusSignIn> call, Response<StatusSignIn> response) {
+                    public void onResponse(Call<StatusSignUp> call, Response<StatusSignUp> response) {
                         if (response.body().getIdUser() != null) {
-                            Toast.makeText(MainActivity.this, "Авторизация успешно завершена", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, LinkActivity.class));
+                            Toast.makeText(SignUpActivity.this, "Регистрация успешно завершена", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                         } else {
-                            Log.e(Constants.LOG_TAG, response.body().toString());
+                            Toast.makeText(SignUpActivity.this, "Ошибка регистрации", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<StatusSignIn> call, Throwable t) {
-                        Log.e(Constants.LOG_TAG, "MainActivity error: " + t.getMessage());
+                    public void onFailure(Call<StatusSignUp> call, Throwable t) {
+                        Log.e(Constants.LOG_TAG, "SignUpActivity error: " + t.getMessage());
                     }
                 });
             }
