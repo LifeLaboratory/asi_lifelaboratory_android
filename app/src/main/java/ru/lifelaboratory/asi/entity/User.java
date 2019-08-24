@@ -11,7 +11,7 @@ public class User {
     float rate;
     String desscription;
     String photoUrl;
-    int[] idCategorys;
+    List<Category> idCategorys;
 
     public User(int id,
                 String fio,
@@ -20,7 +20,7 @@ public class User {
                 float rate,
                 String desscription,
                 String photoUrl,
-                int[] idCategorys) {
+                List<Category> idCategorys) {
         this.id = id;
         this.fio = fio;
         this.login = login;
@@ -87,11 +87,11 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public int[] getIdCategorys() {
+    public List<Category> getIdCategorys() {
         return idCategorys;
     }
 
-    public void setIdCategorys(int[] idCategorys) {
+    public void setIdCategorys(List<Category> idCategorys) {
         this.idCategorys = idCategorys;
     }
 }

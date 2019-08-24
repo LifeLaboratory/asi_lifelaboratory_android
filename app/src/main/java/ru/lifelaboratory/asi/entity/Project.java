@@ -1,5 +1,7 @@
 package ru.lifelaboratory.asi.entity;
 
+import java.util.List;
+
 public class Project {
 
     int id;
@@ -9,7 +11,7 @@ public class Project {
     int id_author;
     String theme;
     float rate;
-    int[] categories;
+    List<Category> categories;
     float budget;
 
 
@@ -20,7 +22,7 @@ public class Project {
                    String theme,
                    float budget,
                    float rate,
-                   int[] categories) {
+                   List<Category> categories) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -88,11 +90,11 @@ public class Project {
         this.rate = rate;
     }
 
-    public int[] getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(int[] categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
