@@ -13,10 +13,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import ru.lifelaboratory.asi.LessonActivity;
 import ru.lifelaboratory.asi.R;
 import ru.lifelaboratory.asi.entity.CV;
 
@@ -42,7 +40,7 @@ public class PeoplesAdapter extends BaseAdapter {
         return position;
     }
 
-    public PeoplesAdapter(Context context, ArrayList<CV> items) {
+    public PeoplesAdapter(Context context, List<CV> items) {
         ctx = context;
         this.items = items;
         lInflater = (LayoutInflater) ctx
