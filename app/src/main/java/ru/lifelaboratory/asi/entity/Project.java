@@ -17,10 +17,12 @@ import lombok.ToString;
 @Setter
 public class Project {
 
+    @SerializedName("id_project")
     Integer id;
     String title;
     String description;
     String photo;
+    @SerializedName("id_user")
     Integer idAuthor;
     float rate;
     List<Category> categories;

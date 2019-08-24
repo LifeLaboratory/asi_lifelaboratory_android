@@ -81,7 +81,7 @@ public class InfoProjectActivity extends Activity {
                         Log.e(Constants.LOG_TAG, "Мир соснул, а юзер сдох");
                     }
                 });
-                Call<ArrayList<Document>> documents = documentService.getDocumentsById(new FilterForDocument(0, 0, idProject));
+                Call<ArrayList<Document>> documents = documentService.getDocumentsById(new FilterForDocument(0, idProject, 0));
                 documents.enqueue(new Callback<ArrayList<Document>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Document>> call, Response<ArrayList<Document>> response) {
