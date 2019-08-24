@@ -6,12 +6,13 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import ru.lifelaboratory.asi.entity.Document;
 
 public interface LessonService {
-    @GET("lessons")
+    @GET("/lessons")
     Call<List<Document>> allLessons();
 
-    @GET("lesson/")
-    Call<Document> thislesson(Integer id);
+    @GET("/lesson/{id}")
+    Call<Document> thislesson(@Path("id") Integer id);
 }
