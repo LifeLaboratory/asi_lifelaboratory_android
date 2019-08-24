@@ -12,16 +12,11 @@
         card_view:cardBackgroundColor="@color/colorPrimary"
         android:layout_margin="16dp"
         android:padding="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/service_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/profile" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,9 +30,8 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:text="Пример"
-                    android:textAlignment="center"
                     android:textColor="#fff"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:layout_margin="16dp" />
 
                 <TextView
@@ -45,7 +39,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Описание"
-                    android:textAlignment="center"
                     android:textColor="#fff"
                     android:layout_margin="16dp"
                     android:textSize="14dp" />
@@ -53,6 +46,15 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/service_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/visibility_icon"
+            android:layout_margin="5dp"
+            android:layout_gravity="end|bottom" />
 
     </android.support.v7.widget.CardView>
 

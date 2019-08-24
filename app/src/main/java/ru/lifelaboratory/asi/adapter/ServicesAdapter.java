@@ -8,16 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import ru.lifelaboratory.asi.R;
-import ru.lifelaboratory.asi.entity.CV;
 import ru.lifelaboratory.asi.entity.Service;
 
 public class ServicesAdapter extends BaseAdapter {
@@ -42,7 +37,7 @@ public class ServicesAdapter extends BaseAdapter {
         return position;
     }
 
-    public ServicesAdapter(Context context, ArrayList<Service> items) {
+    public ServicesAdapter(Context context, List<Service> items) {
         ctx = context;
         this.items = items;
         lInflater = (LayoutInflater) ctx
@@ -55,14 +50,16 @@ public class ServicesAdapter extends BaseAdapter {
             convertView = lInflater.inflate(R.layout.adapter_services, parent, false);
         }
         service = items.get(position);
-        ((TextView) convertView.findViewById(R.id.service_title)).setText("Заголовок");
-        ImageView photo = (ImageView)convertView.findViewById(R.id.service_img);
-        Picasso.with(this.ctx)
-                .load(service.getUrl())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(photo);
-        ((TextView) convertView.findViewById(R.id.service_description)).setText("Описание");
+        ((TextView) convertView.findViewById(R.id.service_title)).setText(service.getTitle());
+        ((TextView) convertView.findViewById(R.id.service_description)).setText(service.getDescription());
+        ((FloatingActionButton) convertView.findViewById(R.id.service_url)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(service.getUrl()));
+                ctx.startActivity(i);
+            }
+        });
 
         return convertView;
     }
