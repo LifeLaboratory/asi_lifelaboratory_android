@@ -77,7 +77,7 @@ public class ProjectAdapter extends BaseAdapter {
         budget.setText(String.format("%f", projects.get(position).getBudget()));
         rate.setText(String.format("%f", projects.get(position).getRate()));
 
-        ArrayList<Category> categories = (ArrayList<Category>) projects.get(position).getCategories();
+        /*ArrayList<Category> categories = (ArrayList<Category>) projects.get(position).getCategories();
         StringBuilder stringBuilder = new StringBuilder();
         for (int index = 0; index < categories.size(); index++) {
             if (index != 0) {
@@ -85,7 +85,7 @@ public class ProjectAdapter extends BaseAdapter {
             }
             stringBuilder.append(categories.get(index).getTitle());
         }
-        category.setText(stringBuilder.toString());
+        category.setText(stringBuilder.toString());*/
 
         return view;
     }
