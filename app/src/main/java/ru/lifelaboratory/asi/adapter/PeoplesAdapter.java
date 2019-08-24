@@ -53,14 +53,14 @@ public class PeoplesAdapter extends BaseAdapter {
             convertView = lInflater.inflate(R.layout.adapter_peoples, parent, false);
         }
         cv = items.get(position);
-        ((TextView) convertView.findViewById(R.id.cv_title)).setText("Заголовок");
+        ((TextView) convertView.findViewById(R.id.cv_title)).setText(cv.getTitle());
         ImageView photo = (ImageView)convertView.findViewById(R.id.cv_img);
         Picasso.with(this.ctx)
                 .load(cv.getUrl())
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(photo);
-        ((TextView) convertView.findViewById(R.id.cv_description)).setText("Описание");
+        ((TextView) convertView.findViewById(R.id.cv_description)).setText(cv.getDescription());
 
         FloatingActionButton button = (FloatingActionButton) convertView.findViewById(R.id.cv_url);
         button.setOnClickListener(new View.OnClickListener() {
