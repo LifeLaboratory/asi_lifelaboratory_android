@@ -86,7 +86,6 @@ public class ProjectAdapter extends BaseAdapter {
                 .error(R.drawable.ic_launcher_foreground)
                 .into(logo);
         title.setText(project.getTitle());
-        //TODO сделать запрос на возвращение объекта пользователя
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
         UserService userService = retrofit.create(UserService.class);

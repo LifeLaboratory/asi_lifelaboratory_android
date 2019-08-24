@@ -2,6 +2,7 @@ package ru.lifelaboratory.asi.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class User {
     String description;
     @SerializedName("photo")
     String photoUrl;
-    List<Category> idCategorys;
+    ArrayList<Category> categories;
 
     public User(String name,
                 String login,
