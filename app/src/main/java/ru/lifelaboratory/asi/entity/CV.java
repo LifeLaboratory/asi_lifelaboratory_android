@@ -2,8 +2,8 @@ package ru.lifelaboratory.asi.entity;
 
 public class CV {
 
-    int id;
-    int idUser;
+    Integer id;
+    Integer idUser;
     String url;
 
     public CV(int id, int idUser, String url) {
@@ -16,7 +16,7 @@ public class CV {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,7 +24,7 @@ public class CV {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 

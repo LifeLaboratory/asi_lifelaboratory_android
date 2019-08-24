@@ -2,19 +2,19 @@ package ru.lifelaboratory.asi.entity;
 
 public class Category {
 
-    int id;
+    Integer id;
     String title;
 
-    public Category(int id, String title) {
+    public Category(Integer id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,21 +1,21 @@
 package ru.lifelaboratory.asi.entity;
 
 public class Lesson {
-    int id;
+    Integer id;
     String title;
-    int type;
+    Integer type;
 
-    public Lesson(int id, String title, int type) {
+    public Lesson(Integer id, String title, Integer type) {
         this.id = id;
         this.title = title;
         this.type = type;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,11 +27,11 @@ public class Lesson {
         this.title = title;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }
