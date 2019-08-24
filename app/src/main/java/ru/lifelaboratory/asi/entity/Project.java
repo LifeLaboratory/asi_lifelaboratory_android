@@ -6,29 +6,30 @@ public class Project {
     String title;
     String description;
     String photoUrl;
-    int id_user;
+    int id_author;
     String theme;
-    double money;
-    double rate;
-    int[] idCategorys;
+    float rate;
+    int[] categories;
+    float budget;
+
 
     public Project(int id, String title,
                    String description,
                    String photoUrl,
                    int id_user,
                    String theme,
-                   double money,
-                   double rate,
-                   int[] idCategorys) {
+                   float budget,
+                   float rate,
+                   int[] categories) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.photoUrl = photoUrl;
-        this.id_user = id_user;
+        this.id_author = id_user;
         this.theme = theme;
-        this.money = money;
+        this.budget = budget;
         this.rate = rate;
-        this.idCategorys = idCategorys;
+        this.categories = categories;
     }
 
     public int getId() {
@@ -63,12 +64,12 @@ public class Project {
         this.photoUrl = photoUrl;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getId_author() {
+        return id_author;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_author(int id_author) {
+        this.id_author = id_author;
     }
 
     public String getTheme() {
@@ -79,27 +80,27 @@ public class Project {
         this.theme = theme;
     }
 
-    public double getMoney() {
-        return money;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-    public double getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
-    public int[] getIdCategorys() {
-        return idCategorys;
+    public int[] getCategories() {
+        return categories;
     }
 
-    public void setIdCategorys(int[] idCategorys) {
-        this.idCategorys = idCategorys;
+    public void setCategories(int[] categories) {
+        this.categories = categories;
+    }
+
+    public float getBudget() {
+        return budget;
+    }
+
+    public void setBudget(float budget) {
+        this.budget = budget;
     }
 }

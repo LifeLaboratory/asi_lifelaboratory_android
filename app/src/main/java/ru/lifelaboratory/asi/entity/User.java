@@ -8,7 +8,7 @@ public class User {
     String fio;
     String login;
     String password;
-    double rate;
+    float rate;
     String desscription;
     String photoUrl;
     int[] idCategorys;
@@ -17,7 +17,7 @@ public class User {
                 String fio,
                 String login,
                 String password,
-                double rate,
+                float rate,
                 String desscription,
                 String photoUrl,
                 int[] idCategorys) {
@@ -67,7 +67,7 @@ public class User {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
