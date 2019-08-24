@@ -7,8 +7,8 @@ public class Project {
     Integer id;
     String title;
     String description;
-    String photoUrl;
-    Integer id_author;
+    String photo;
+    Integer idAuthor;
     float rate;
     List<Category> categories;
     float budget;
@@ -16,7 +16,7 @@ public class Project {
 
     public Project(Integer id, String title,
                    String description,
-                   String photoUrl,
+                   String photo,
                    Integer id_user,
                    float budget,
                    float rate,
@@ -24,8 +24,8 @@ public class Project {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.photoUrl = photoUrl;
-        this.id_author = id_user;
+        this.photo = photo;
+        this.idAuthor = id_user;
         this.budget = budget;
         this.rate = rate;
         this.categories = categories;
@@ -55,20 +55,20 @@ public class Project {
         this.description = description;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public Integer getId_author() {
-        return id_author;
+    public Integer getIdAuthor() {
+        return idAuthor;
     }
 
-    public void setId_author(Integer id_author) {
-        this.id_author = id_author;
+    public void setIdAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
     public float getRate() {

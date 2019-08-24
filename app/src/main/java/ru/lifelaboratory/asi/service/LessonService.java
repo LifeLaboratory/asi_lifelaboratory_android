@@ -9,9 +9,9 @@ import retrofit2.http.GET;
 import ru.lifelaboratory.asi.entity.Document;
 
 public interface LessonService {
-    @GET("lessons")
+    @GET("/lessons")
     Call<List<Document>> allLessons();
 
-    @GET("lesson/")
+    @GET("/lesson/")
     Call<Document> thislesson(int id);
 }

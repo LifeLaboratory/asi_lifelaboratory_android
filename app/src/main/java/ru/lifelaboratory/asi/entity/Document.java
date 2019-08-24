@@ -7,24 +7,24 @@ public class Document {
     String url;
     String title;
     Integer type;
-    String logo;
+    String photo;
     String description;
 
-    public Document(Integer id, Integer[] idProject, String url, String title, Integer type, String logo) {
+    public Document(Integer id, Integer[] idProject, String url, String title, Integer type, String photo) {
         this.id = id;
         this.idProjects = idProject;
         this.url = url;
         this.title = title;
         this.type = type;
-        this.logo = logo;
+        this.photo = photo;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getDescription() {
