@@ -42,13 +42,6 @@ public class MainActivity extends AppCompatActivity {
         userLogin = (EditText) findViewById(R.id.user_login);
         userPassword = (EditText) findViewById(R.id.user_password);
 
-        ((TextView) findViewById(R.id.to_link)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LinkActivity.class));
-            }
-        });
-
         ((Button) findViewById(R.id.btn_signup)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Авторизация успешно завершена", Toast.LENGTH_SHORT).show();
                             memory = getSharedPreferences(Constants.MEMORY, Context.MODE_PRIVATE);
                             memory.edit().putInt(Constants.USER_ID, response.body().getIdUser()).commit();
-                            startActivity(new Intent(MainActivity.this, LinkActivity.class));
+                            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         } else {
                             Log.e(Constants.LOG_TAG, response.body().toString());
                         }

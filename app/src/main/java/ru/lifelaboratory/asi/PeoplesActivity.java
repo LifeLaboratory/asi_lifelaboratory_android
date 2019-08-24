@@ -26,7 +26,7 @@ public class PeoplesActivity extends Activity implements NavigationView.OnNaviga
                 startActivity(new Intent(PeoplesActivity.this, ProfileActivity.class));
                 break;
             case R.id.nav_services:
-                startActivity(new Intent(PeoplesActivity.this, LinkActivity.class));
+                startActivity(new Intent(PeoplesActivity.this, ServicesActivity.class));
                 break;
             case R.id.nav_docs:
                 startActivity(new Intent(PeoplesActivity.this, LessonListActivity.class));
