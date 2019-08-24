@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">asi</string>
+    <string name="app_name">ASI</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_link">LinkActivity</string>
+    <string name="title_activity_link">Ресурсы</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="title_activity_signup">Регистрация</string>
 </resources>

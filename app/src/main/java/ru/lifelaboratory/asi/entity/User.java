@@ -31,6 +31,20 @@ public class User {
         this.idCategorys = idCategorys;
     }
 
+    public User(String name,
+                String login,
+                String password) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+    }
+
+    public User(String login,
+                String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
