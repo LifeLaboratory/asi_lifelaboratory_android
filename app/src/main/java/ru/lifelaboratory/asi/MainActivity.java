@@ -1,6 +1,8 @@
 package ru.lifelaboratory.asi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +20,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.entity.StatusSignIn;
-import ru.lifelaboratory.asi.entity.StatusSignUp;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
@@ -26,6 +27,7 @@ import ru.lifelaboratory.asi.utils.Constants;
 public class MainActivity extends AppCompatActivity {
 
     EditText userLogin, userPassword;
+    SharedPreferences memory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<StatusSignIn> call, Response<StatusSignIn> response) {
                         if (response.body().getIdUser() != null) {
                             Toast.makeText(MainActivity.this, "Авторизация успешно завершена", Toast.LENGTH_SHORT).show();
+                            memory = getSharedPreferences(Constants.MEMORY, Context.MODE_PRIVATE);
+                            memory.edit().putInt(Constants.USER_ID, response.body().getIdUser()).commit();
                             startActivity(new Intent(MainActivity.this, LinkActivity.class));
                         } else {
                             Log.e(Constants.LOG_TAG, response.body().toString());

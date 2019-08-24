@@ -1,7 +1,12 @@
 package ru.lifelaboratory.asi.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
+import lombok.ToString;
+
+@ToString
 public class User {
 
     int id;
@@ -9,7 +14,8 @@ public class User {
     String login;
     String password;
     float rate;
-    String desscription;
+    String description;
+    @SerializedName("photo")
     String photoUrl;
     List<Category> idCategorys;
 
@@ -18,7 +24,7 @@ public class User {
                 String login,
                 String password,
                 float rate,
-                String desscription,
+                String description,
                 String photoUrl,
                 List<Category> idCategorys) {
         this.id = id;
@@ -26,7 +32,7 @@ public class User {
         this.login = login;
         this.password = password;
         this.rate = rate;
-        this.desscription = desscription;
+        this.description = description;
         this.photoUrl = photoUrl;
         this.idCategorys = idCategorys;
     }
@@ -85,12 +91,12 @@ public class User {
         this.rate = rate;
     }
 
-    public String getDesscription() {
-        return desscription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesscription(String desscription) {
-        this.desscription = desscription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPhotoUrl() {
