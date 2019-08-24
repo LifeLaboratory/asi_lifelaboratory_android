@@ -54,7 +54,7 @@ public class LessonAdapter extends BaseAdapter {
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(photo);
-        ((TextView)convertView.findViewById(R.id.elementDesc)).setText(doc.getDesc());
+        ((TextView)convertView.findViewById(R.id.elementDesc)).setText(doc.getDescription());
         return convertView;
     }
 }
