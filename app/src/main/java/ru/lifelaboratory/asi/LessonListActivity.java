@@ -47,7 +47,6 @@ public class LessonListActivity extends AppCompatActivity {
             }
         });
 
-
         lessonAdapter = new LessonAdapter(this, items);
         ListView listView = findViewById(R.id.lvlesson);
         listView.setAdapter(lessonAdapter);

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".LinkActivity">
+    tools:context=".PeoplesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,20 +28,12 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <TextView
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello" />
+            android:layout_height="match_parent"
+            android:id="@+id/list_peoples" />
 
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

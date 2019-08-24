@@ -1,7 +1,6 @@
 package ru.lifelaboratory.asi;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,32 +12,37 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.lifelaboratory.asi.entity.User;
+import ru.lifelaboratory.asi.adapter.PeoplesAdapter;
+import ru.lifelaboratory.asi.entity.CV;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
-public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PeoplesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences memory;
     NavigationView navigationView;
+    PeoplesAdapter cvAdapter;
+    List<CV> cv = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_peoples);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,31 +53,31 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        memory = getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
-        Integer userId = memory.getInt(Constants.USER_ID, 0);
-        Log.e(Constants.LOG_TAG, userId.toString());
+        ListView listPeoples = (ListView) findViewById(R.id.list_peoples);
+        cv = new ArrayList<>();
+        cvAdapter = new PeoplesAdapter(this, cv);
+        listPeoples.setAdapter(cvAdapter);
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
-        UserService profileService = retrofit.create(UserService.class);
-        Call<User> profileInfo = profileService.profile(userId);
-        profileInfo.enqueue(new Callback<User>() {
+        UserService cvService = retrofit.create(UserService.class);
+        Call<List<CV>> cvServiceAllCV = cvService.getAllCV();
+        cvServiceAllCV.enqueue(new Callback<List<CV>>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                Log.e(Constants.LOG_TAG, response.body().toString());
-                User tmpUser = response.body();
-                if (tmpUser != null) {
-                    ((TextView) findViewById(R.id.user_name)).setText(tmpUser.getName() == null ? "Anonymous" : tmpUser.getName());
-                    ((TextView) findViewById(R.id.user_rate)).setText("Рейтинг: " + tmpUser.getRate());
-                    ((TextView) findViewById(R.id.user_description)).setText(tmpUser.getDescription() == null ? "Нет описания" : tmpUser.getDescription());
+            public void onResponse(Call<List<CV>> call, Response<List<CV>> response) {
+                if (response.body().size() > 0) {
+                    Log.e(Constants.LOG_TAG, response.body().toString());
+                    cv.clear();
+                    cv.addAll(response.body());
+                    cvAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e(Constants.LOG_TAG, "ProfileActivity error: " + t.getMessage());
+            public void onFailure(Call<List<CV>> call, Throwable t) {
+                Log.e(Constants.LOG_TAG, "ServicesActivity error: " + t.getMessage());
             }
         });
-
     }
 
     @Override
@@ -81,20 +85,14 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_docs:
-                startActivity(new Intent(ProfileActivity.this, LessonListActivity.class));
+            case R.id.nav_profile:
+                startActivity(new Intent(PeoplesActivity.this, ProfileActivity.class));
                 break;
             case R.id.nav_services:
-                startActivity(new Intent(ProfileActivity.this, ServicesActivity.class));
+                startActivity(new Intent(PeoplesActivity.this, ServicesActivity.class));
                 break;
-            case R.id.nav_people:
-                startActivity(new Intent(ProfileActivity.this, PeoplesActivity.class));
-                break;
-            case R.id.nav_project:
-                startActivity(new Intent(ProfileActivity.this, ProjectActivity.class));
-                break;
-            case R.id.nav_exit:
-                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            case R.id.nav_docs:
+                startActivity(new Intent(PeoplesActivity.this, LessonListActivity.class));
                 break;
         }
 

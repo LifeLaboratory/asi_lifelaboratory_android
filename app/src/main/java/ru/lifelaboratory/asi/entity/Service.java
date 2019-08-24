@@ -9,11 +9,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Getter
-@Setter
-public class Category {
+@Getter @Setter
+public class Service {
 
-    Integer id;
+    int id;
+    String url;
     String title;
+    String description;
 
 }
