@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#70b4e1"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/back_icon" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Подробное описание"
+        android:textColor="#000000"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/budget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Бюджет"
+        android:textColor="#000000"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/infoAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Инфа о челе"
+        android:textColor="#000000"
+        android:textSize="36sp" />
+
+    <ListView
+        android:id="@+id/listDoc"
+        android:layout_width="match_parent"
+        android:layout_height="288dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        app:srcCompat="@android:color/holo_red_dark" />
+
+</LinearLayout>
