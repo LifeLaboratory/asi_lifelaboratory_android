@@ -39,7 +39,9 @@ public class LessonAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        if (convertView == null) {
+            convertView = lInflater.inflate(R.layout.lesson_layout, parent, false);
+        }
         return convertView;
     }
 }
