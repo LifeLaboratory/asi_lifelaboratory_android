@@ -1,5 +1,7 @@
 package ru.lifelaboratory.asi.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
