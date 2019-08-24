@@ -9,7 +9,6 @@ public class Project {
     String description;
     String photoUrl;
     int id_author;
-    String theme;
     float rate;
     List<Category> categories;
     float budget;
@@ -19,7 +18,6 @@ public class Project {
                    String description,
                    String photoUrl,
                    int id_user,
-                   String theme,
                    float budget,
                    float rate,
                    List<Category> categories) {
@@ -28,7 +26,6 @@ public class Project {
         this.description = description;
         this.photoUrl = photoUrl;
         this.id_author = id_user;
-        this.theme = theme;
         this.budget = budget;
         this.rate = rate;
         this.categories = categories;
@@ -72,14 +69,6 @@ public class Project {
 
     public void setId_author(int id_author) {
         this.id_author = id_author;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
     }
 
     public float getRate() {
