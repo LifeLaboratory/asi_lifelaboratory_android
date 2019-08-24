@@ -13,5 +13,5 @@ public interface LessonService {
     Call<List<Document>> allLessons();
 
     @GET("lesson/")
-    Call<Document> thislesson(int id);
+    Call<Document> thislesson(Integer id);
 }
