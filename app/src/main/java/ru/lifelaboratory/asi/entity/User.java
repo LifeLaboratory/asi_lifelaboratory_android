@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
 
     int id;
-    String fio;
+    String name;
     String login;
     String password;
     float rate;
@@ -14,7 +14,7 @@ public class User {
     List<Category> idCategorys;
 
     public User(int id,
-                String fio,
+                String name,
                 String login,
                 String password,
                 float rate,
@@ -22,7 +22,7 @@ public class User {
                 String photoUrl,
                 List<Category> idCategorys) {
         this.id = id;
-        this.fio = fio;
+        this.name = name;
         this.login = login;
         this.password = password;
         this.rate = rate;
@@ -39,12 +39,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getName() {
+        return name;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLogin() {
