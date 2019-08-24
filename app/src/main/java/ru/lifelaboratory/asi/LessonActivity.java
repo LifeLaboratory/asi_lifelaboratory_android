@@ -75,7 +75,35 @@ public class LessonActivity extends AppCompatActivity {
                                 LinearLayout.LayoutParams lessonTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                                 lessonName.setLayoutParams(lessonNameParams);
                                 scrollView.addView(lessonName);
+                                break;
                             }
+                            /*case 1:{
+                                TextView lessonName = new TextView(LessonActivity.this);
+                                lessonName.setText(response.body().getTitle());
+                                LinearLayout.LayoutParams lessonNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                lessonName.setLayoutParams(lessonNameParams);
+                                linLayout.addView(lessonName);
+
+                                ScrollView scrollView = new ScrollView(LessonActivity.this);
+                                scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                linLayout.addView(scrollView);
+
+                                ImageView logo = new ImageView(LessonActivity.this);
+                                Picasso.with(LessonActivity.this)
+                                        .load(response.body().getPhoto())
+                                        .placeholder(R.drawable.ic_launcher_foreground)
+                                        .error(R.drawable.ic_launcher_foreground)
+                                        .into(logo);
+                                logo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                scrollView.addView(logo);
+
+                                TextView lessonText = new TextView(LessonActivity.this);
+                                lessonText.setText(response.body().getDescription());
+                                LinearLayout.LayoutParams lessonTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                lessonName.setLayoutParams(lessonNameParams);
+                                scrollView.addView(lessonName);
+                                break;
+                            }*/
                         }
                     } else {
                         Log.e(Constants.LOG_TAG, response.body().toString());
