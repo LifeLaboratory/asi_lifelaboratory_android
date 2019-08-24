@@ -3,16 +3,16 @@ package ru.lifelaboratory.asi.entity;
 public class Document {
 
     int id;
-    int[] idProjects;
+    int idProject;
     String url;
     String title;
     int type;
     String logo;
     String description;
 
-    public Document(int id, int[] idProject, String url, String title, int type, String logo) {
+    public Document(int id, int idProject, String url, String title, int type, String logo) {
         this.id = id;
-        this.idProjects = idProject;
+        this.idProject = idProject;
         this.url = url;
         this.title = title;
         this.type = type;
@@ -42,12 +42,12 @@ public class Document {
         this.id = id;
     }
 
-    public int[] getIdProjects() {
-        return idProjects;
+    public int getIdProject() {
+        return idProject;
     }
 
-    public void setIdProjects(int[] idProjects) {
-        this.idProjects = idProjects;
+    public void setIdProjects(int idProjects) {
+        this.idProject = idProjects;
     }
 
     public String getUrl() {
