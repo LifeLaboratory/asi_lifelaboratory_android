@@ -50,6 +50,9 @@ public class LinkActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.nav_people:
+                startActivity(new Intent(LinkActivity.this, PeoplesActivity.class));
+                break;
             case R.id.nav_profile:
                 startActivity(new Intent(LinkActivity.this, ProfileActivity.class));
                 break;
