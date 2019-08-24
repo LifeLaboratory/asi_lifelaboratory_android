@@ -1,6 +1,8 @@
 package ru.lifelaboratory.asi;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.lifelaboratory.asi.entity.Document;
+import ru.lifelaboratory.asi.entity.Lesson;
 
 public class LessonAdapter extends BaseAdapter {
     List<Document> items = new ArrayList<>();
     Context ctx = null;
     LayoutInflater lInflater = null;
+    Document doc = null;
 
     @Override
     public int getCount() {
@@ -46,7 +50,7 @@ public class LessonAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = lInflater.inflate(R.layout.lesson_layout, parent, false);
         }
-        Document doc = items.get(position);
+        doc = items.get(position);
         ((TextView)convertView.findViewById(R.id.elementTitle)).setText(doc.getTitle());
         ImageView photo = (ImageView)convertView.findViewById(R.id.elementImg);
         Picasso.with(this.ctx)
@@ -55,6 +59,15 @@ public class LessonAdapter extends BaseAdapter {
                 .error(R.drawable.ic_launcher_foreground)
                 .into(photo);
         ((TextView)convertView.findViewById(R.id.elementDesc)).setText(doc.getDescription());
+        FloatingActionButton button = (FloatingActionButton)convertView.findViewById(R.id.moreInfo);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toDocInfo = new Intent(ctx, LessonActivity.class);
+                toDocInfo.putExtra("DOC_ID", doc.getId());
+                ctx.startActivity(toDocInfo);
+            }
+        });
         return convertView;
     }
 }
