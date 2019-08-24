@@ -62,7 +62,7 @@ public class ProjectAdapter extends BaseAdapter {
 
         final Project project = (Project) getItem(position);
 
-        ImageView logo = (ImageView) view.findViewById(R.id.logo);
+        ImageView logo = (ImageView) view.findViewById(R.id.photo);
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView author = (TextView) view.findViewById(R.id.author);
         TextView category = (TextView) view.findViewById(R.id.category);

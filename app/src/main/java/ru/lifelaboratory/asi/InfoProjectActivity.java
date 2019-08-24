@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,8 +18,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.DocumentAdapter;
+import ru.lifelaboratory.asi.entity.Document;
+import ru.lifelaboratory.asi.entity.FilterForDocument;
 import ru.lifelaboratory.asi.entity.Project;
 import ru.lifelaboratory.asi.entity.User;
+import ru.lifelaboratory.asi.service.DocumentService;
 import ru.lifelaboratory.asi.service.ProjectService;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
@@ -30,6 +36,9 @@ public class InfoProjectActivity extends Activity {
     TextView description = (TextView) findViewById(R.id.description);
     TextView budget = (TextView) findViewById(R.id.budget);
     TextView infoAuthor = (TextView) findViewById(R.id.infoAuthor);
+    ListView listDoc = (ListView) findViewById(R.id.listDoc);
+
+    ArrayList<Document> listOfDocument = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,9 +50,11 @@ public class InfoProjectActivity extends Activity {
 
         ProjectService projectService = retrofit.create(ProjectService.class);
         final UserService userService = retrofit.create(UserService.class);
+        final DocumentService documentService = retrofit.create(DocumentService.class);
 
         memory = getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
-        Call<Project> projectCall = projectService.getProject(memory.getInt(Constants.PROJECT_ID, 0));
+        final Integer idProject = memory.getInt(Constants.PROJECT_ID, 0);
+        Call<Project> projectCall = projectService.getProject(idProject);
 
         //TODO СДЕЛАТЬ КАТЕГОРИИ
         projectCall.enqueue(new Callback<Project>() {
@@ -67,20 +78,31 @@ public class InfoProjectActivity extends Activity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Log.d(Constants.LOG_TAG, "Мир соснул, а юзер сдох");
+                        Log.e(Constants.LOG_TAG, "Мир соснул, а юзер сдох");
+                    }
+                });
+                Call<ArrayList<Document>> documents = documentService.getDocumentsById(new FilterForDocument(0, 0, idProject));
+                documents.enqueue(new Callback<ArrayList<Document>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Document>> call, Response<ArrayList<Document>> response) {
+                        Log.d(Constants.LOG_TAG, "Доки у нас заводи мотор");
+                        listOfDocument.addAll(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Document>> call, Throwable t) {
+                        Log.e(Constants.LOG_TAG, "Гномы все СПИ%#&ЛИ");
                     }
                 });
 
+                documentAdapter = new DocumentAdapter(InfoProjectActivity.this, listOfDocument);
+                listDoc.setAdapter(documentAdapter);
             }
 
             @Override
             public void onFailure(Call<Project> call, Throwable t) {
-                Log.d(Constants.LOG_TAG, "Помянем проект, ушел в другой мир");
+                Log.e(Constants.LOG_TAG, "Помянем проект, ушел в другой мир");
             }
         });
-
-
-        Call<User> getUser = userService.profile();
-
     }
 }

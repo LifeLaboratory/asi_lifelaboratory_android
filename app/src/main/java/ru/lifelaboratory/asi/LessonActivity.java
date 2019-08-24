@@ -63,7 +63,7 @@ public class LessonActivity extends AppCompatActivity {
 
                                 ImageView logo = new ImageView(LessonActivity.this);
                                 Picasso.with(LessonActivity.this)
-                                        .load(response.body().getLogo())
+                                        .load(response.body().getPhoto())
                                         .placeholder(R.drawable.ic_launcher_foreground)
                                         .error(R.drawable.ic_launcher_foreground)
                                         .into(logo);

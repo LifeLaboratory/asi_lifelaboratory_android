@@ -50,7 +50,7 @@ public class DocumentAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.info_project_layout, parent, false);
         }
 
-        ImageView logo = (ImageView) view.findViewById(R.id.logo);
+        ImageView logo = (ImageView) view.findViewById(R.id.photo);
         TextView title = (TextView) view.findViewById(R.id.title);
 
         Document document = (Document) getItem(position);
