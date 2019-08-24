@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -39,6 +40,9 @@ public class ServicesActivity extends AppCompatActivity implements NavigationVie
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,11 +86,20 @@ public class ServicesActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_profile:
                 startActivity(new Intent(ServicesActivity.this, ProfileActivity.class));
                 break;
+            case R.id.nav_docs:
+                startActivity(new Intent(ServicesActivity.this, LessonListActivity.class));
+                break;
             case R.id.nav_services:
                 startActivity(new Intent(ServicesActivity.this, ServicesActivity.class));
                 break;
-            case R.id.nav_docs:
-                startActivity(new Intent(ServicesActivity.this, LessonListActivity.class));
+            case R.id.nav_people:
+                startActivity(new Intent(ServicesActivity.this, PeoplesActivity.class));
+                break;
+            case R.id.nav_project:
+                startActivity(new Intent(ServicesActivity.this, ProjectActivity.class));
+                break;
+            case R.id.nav_exit:
+                startActivity(new Intent(ServicesActivity.this, MainActivity.class));
                 break;
         }
 
