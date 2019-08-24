@@ -78,7 +78,7 @@ public class InfoProjectActivity extends Activity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         Log.d(Constants.LOG_TAG, "Гуд, мы нашли usera");
-                        infoAuthor.setText(response.body().getId());
+                        infoAuthor.setText(response.body().getName());
                     }
 
                     @Override

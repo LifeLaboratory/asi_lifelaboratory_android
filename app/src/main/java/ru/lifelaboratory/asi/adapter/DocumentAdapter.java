@@ -47,7 +47,7 @@ public class DocumentAdapter extends BaseAdapter {
 
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.info_project_layout, parent, false);
+            view = lInflater.inflate(R.layout.document_small_info_layout, parent, false);
         }
 
         ImageView logo = (ImageView) view.findViewById(R.id.photo);
