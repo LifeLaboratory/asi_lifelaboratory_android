@@ -1,5 +1,7 @@
 package ru.lifelaboratory.asi.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +20,8 @@ public class Project {
     Integer id;
     String title;
     String description;
+    @SerializedName("photo_url")
+
     String photoUrl;
     Integer id_author;
     float rate;
