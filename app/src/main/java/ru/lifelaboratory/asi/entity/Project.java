@@ -25,6 +25,7 @@ public class Project {
     @SerializedName("id_user")
     Integer idAuthor;
     float rate;
+    @SerializedName("category")
     List<Category> categories;
     float budget;
 

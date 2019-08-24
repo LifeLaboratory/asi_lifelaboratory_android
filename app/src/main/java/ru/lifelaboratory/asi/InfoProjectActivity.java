@@ -32,11 +32,11 @@ public class InfoProjectActivity extends Activity {
     DocumentAdapter documentAdapter;
     SharedPreferences memory;
 
-    ImageView photo = (ImageView) findViewById(R.id.photo);
-    TextView description = (TextView) findViewById(R.id.description);
-    TextView budget = (TextView) findViewById(R.id.budget);
-    TextView infoAuthor = (TextView) findViewById(R.id.infoAuthor);
-    ListView listDoc = (ListView) findViewById(R.id.listDoc);
+    ImageView photo ;
+    TextView description;
+    TextView budget;
+    TextView infoAuthor;
+    ListView listDoc;
 
     ArrayList<Document> listOfDocument = new ArrayList<>();
 
@@ -44,6 +44,12 @@ public class InfoProjectActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_project_layout);
+
+        photo = (ImageView) findViewById(R.id.photo);
+        description = (TextView) findViewById(R.id.description);
+        budget = (TextView) findViewById(R.id.budget);
+        infoAuthor = (TextView) findViewById(R.id.infoAuthor);
+        listDoc = (ListView) findViewById(R.id.listDoc);
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
@@ -56,7 +62,6 @@ public class InfoProjectActivity extends Activity {
         final Integer idProject = memory.getInt(Constants.PROJECT_ID, 0);
         Call<Project> projectCall = projectService.getProject(idProject);
 
-        //TODO СДЕЛАТЬ КАТЕГОРИИ
         projectCall.enqueue(new Callback<Project>() {
             @Override
             public void onResponse(Call<Project> call, Response<Project> response) {
@@ -87,6 +92,7 @@ public class InfoProjectActivity extends Activity {
                     public void onResponse(Call<ArrayList<Document>> call, Response<ArrayList<Document>> response) {
                         Log.d(Constants.LOG_TAG, "Доки у нас заводи мотор");
                         listOfDocument.addAll(response.body());
+                        documentAdapter.notifyDataSetChanged();
                     }
 
                     @Override

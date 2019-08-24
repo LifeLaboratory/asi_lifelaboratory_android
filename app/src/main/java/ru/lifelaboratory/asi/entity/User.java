@@ -17,6 +17,7 @@ import lombok.ToString;
 @Setter
 public class User {
 
+    @SerializedName("id_user")
     Integer id;
     String name;
     String login;
