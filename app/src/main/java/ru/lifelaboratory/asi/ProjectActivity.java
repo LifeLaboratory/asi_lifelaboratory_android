@@ -38,6 +38,7 @@ public class ProjectActivity extends Activity {
             @Override
             public void onResponse(Call<ArrayList<Project>> call, Response<ArrayList<Project>> response) {
                 projects.addAll(response.body());
+                projectAdapter.notifyDataSetChanged();
                 Log.d(Constants.LOG_TAG, "Найс запрос, проекты в хате");
             }
 

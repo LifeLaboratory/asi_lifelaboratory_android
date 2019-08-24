@@ -4,16 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 @Getter
 @Setter
-public class Category {
+@NoArgsConstructor
+@AllArgsConstructor
+public class FilterForDocument {
 
-    Integer id;
-    String title;
-
+    Integer idUser;
+    Integer idProject;
+    Integer idDocument;
 }

@@ -18,7 +18,6 @@ import java.util.List;
 import ru.lifelaboratory.asi.LessonActivity;
 import ru.lifelaboratory.asi.R;
 import ru.lifelaboratory.asi.entity.Document;
-import ru.lifelaboratory.asi.entity.Lesson;
 
 public class LessonAdapter extends BaseAdapter {
     List<Document> items = new ArrayList<>();
@@ -56,7 +55,7 @@ public class LessonAdapter extends BaseAdapter {
         ((TextView)convertView.findViewById(R.id.elementTitle)).setText(doc.getTitle());
         ImageView photo = (ImageView)convertView.findViewById(R.id.elementImg);
         Picasso.with(this.ctx)
-                .load(doc.getLogo())
+                .load(doc.getPhoto())
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(photo);
