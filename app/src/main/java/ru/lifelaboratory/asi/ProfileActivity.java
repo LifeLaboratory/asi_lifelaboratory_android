@@ -39,7 +39,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -64,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 if (tmpUser != null) {
                     ((TextView) findViewById(R.id.user_name)).setText(tmpUser.getName() == null ? "Anonymous" : tmpUser.getName());
                     ((TextView) findViewById(R.id.user_rate)).setText("Рейтинг: " + tmpUser.getRate());
-                    ((TextView) findViewById(R.id.user_description)).setText(tmpUser.getDescription() == null ? "Нет описания" : tmpUser.getDescription());
+                    ((TextView) findViewById(R.id.user_description)).setText(tmpUser.getDescription() == null ? "Нет описания" : "Описание: " + tmpUser.getDescription());
                 }
             }
 

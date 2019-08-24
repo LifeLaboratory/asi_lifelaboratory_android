@@ -23,6 +23,9 @@ public interface UserService {
     @GET("/cv")
     Call<List<CV>> getAllCV();
 
+    @POST("/cv")
+    Call<Object> addCV(@Body CV cv);
+
     @GET("/profile/{id}")
     Call<User> profile(@Path("id") Integer idUser);
 }

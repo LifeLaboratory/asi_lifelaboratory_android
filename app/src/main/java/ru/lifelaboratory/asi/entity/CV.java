@@ -15,9 +15,12 @@ import lombok.ToString;
 @ToString
 public class CV {
 
+    @SerializedName("id_cv")
     Integer id;
     @SerializedName("id_user")
     Integer idUser;
     String url;
+    String title;
+    String description;
 
 }

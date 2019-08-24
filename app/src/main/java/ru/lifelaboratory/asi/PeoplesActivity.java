@@ -1,8 +1,11 @@
 package ru.lifelaboratory.asi;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,7 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -32,6 +38,9 @@ public class PeoplesActivity extends AppCompatActivity implements NavigationView
     NavigationView navigationView;
     PeoplesAdapter cvAdapter;
     List<CV> cv = null;
+    Dialog addCVDialog;
+    UserService cvService;
+    SharedPreferences memory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +69,7 @@ public class PeoplesActivity extends AppCompatActivity implements NavigationView
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
-        UserService cvService = retrofit.create(UserService.class);
+        cvService = retrofit.create(UserService.class);
         Call<List<CV>> cvServiceAllCV = cvService.getAllCV();
         cvServiceAllCV.enqueue(new Callback<List<CV>>() {
             @Override
@@ -78,6 +87,71 @@ public class PeoplesActivity extends AppCompatActivity implements NavigationView
                 Log.e(Constants.LOG_TAG, "ServicesActivity error: " + t.getMessage());
             }
         });
+
+        ((FloatingActionButton) findViewById(R.id.btn_add_cv)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCVDialog = new Dialog(PeoplesActivity.this);
+                addCVDialog.setTitle("Добавление резюме");
+                addCVDialog.setContentView(R.layout.dialog_add_cv);
+
+                addCVDialog.show();
+
+                ((Button) addCVDialog.findViewById(R.id.btn_dialog_cancel)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addCVDialog.cancel();
+                    }
+                });
+
+                ((Button) addCVDialog.findViewById(R.id.btn_dialog_add)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        memory = PeoplesActivity.this.getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
+                        Integer userId = memory.getInt(Constants.USER_ID, 0);
+                        CV cv = new CV();
+                        EditText cvTitle = addCVDialog.findViewById(R.id.cv_title);
+                        EditText cvDescription = addCVDialog.findViewById(R.id.cv_description);
+                        EditText cvUrl = addCVDialog.findViewById(R.id.cv_url);
+                        cv.setTitle(cvTitle.getText().toString());
+                        cv.setDescription(cvDescription.getText().toString());
+                        cv.setUrl(cvUrl.getText().toString());
+                        cv.setIdUser(userId);
+                        Log.e(Constants.LOG_TAG, cv.toString());
+
+                        Call<Object> cvServiceAllCV = cvService.addCV(cv);
+                        cvServiceAllCV.enqueue(new Callback<Object>() {
+                            @Override
+                            public void onResponse(Call<Object> call, Response<Object> response) {
+                                addCVDialog.cancel();
+                                Call<List<CV>> cvServiceAllCV = cvService.getAllCV();
+                                cvServiceAllCV.enqueue(new Callback<List<CV>>() {
+                                    @Override
+                                    public void onResponse(Call<List<CV>> call, Response<List<CV>> response) {
+                                        if (response.body().size() > 0) {
+                                            Log.e(Constants.LOG_TAG, response.body().toString());
+                                            PeoplesActivity.this.cv.clear();
+                                            PeoplesActivity.this.cv.addAll(response.body());
+                                            cvAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<CV>> call, Throwable t) {
+                                        Log.e(Constants.LOG_TAG, "ServicesActivity error: " + t.getMessage());
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onFailure(Call<Object> call, Throwable t) {
+                                Log.e(Constants.LOG_TAG, "PeoplesActivity error: " + t.getMessage());
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -85,14 +159,23 @@ public class PeoplesActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_profile:
-                startActivity(new Intent(PeoplesActivity.this, ProfileActivity.class));
+            case R.id.nav_docs:
+                startActivity(new Intent(PeoplesActivity.this, LessonListActivity.class));
                 break;
             case R.id.nav_services:
                 startActivity(new Intent(PeoplesActivity.this, ServicesActivity.class));
                 break;
-            case R.id.nav_docs:
-                startActivity(new Intent(PeoplesActivity.this, LessonListActivity.class));
+            case R.id.nav_people:
+                startActivity(new Intent(PeoplesActivity.this, PeoplesActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(PeoplesActivity.this, ProfileActivity.class));
+                break;
+            case R.id.nav_project:
+                startActivity(new Intent(PeoplesActivity.this, ProjectActivity.class));
+                break;
+            case R.id.nav_exit:
+                startActivity(new Intent(PeoplesActivity.this, MainActivity.class));
                 break;
         }
 
