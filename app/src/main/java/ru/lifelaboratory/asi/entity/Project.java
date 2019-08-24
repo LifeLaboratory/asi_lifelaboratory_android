@@ -4,20 +4,20 @@ import java.util.List;
 
 public class Project {
 
-    int id;
+    Integer id;
     String title;
     String description;
     String photoUrl;
-    int id_author;
+    Integer id_author;
     float rate;
     List<Category> categories;
     float budget;
 
 
-    public Project(int id, String title,
+    public Project(Integer id, String title,
                    String description,
                    String photoUrl,
-                   int id_user,
+                   Integer id_user,
                    float budget,
                    float rate,
                    List<Category> categories) {
@@ -31,11 +31,11 @@ public class Project {
         this.categories = categories;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,11 +63,11 @@ public class Project {
         this.photoUrl = photoUrl;
     }
 
-    public int getId_author() {
+    public Integer getId_author() {
         return id_author;
     }
 
-    public void setId_author(int id_author) {
+    public void setId_author(Integer id_author) {
         this.id_author = id_author;
     }
 

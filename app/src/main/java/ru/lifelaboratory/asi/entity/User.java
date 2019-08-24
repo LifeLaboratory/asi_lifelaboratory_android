@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class User {
 
-    int id;
+    Integer id;
     String name;
     String login;
     String password;
@@ -19,7 +19,7 @@ public class User {
     String photoUrl;
     List<Category> idCategorys;
 
-    public User(int id,
+    public User(Integer id,
                 String name,
                 String login,
                 String password,
@@ -51,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

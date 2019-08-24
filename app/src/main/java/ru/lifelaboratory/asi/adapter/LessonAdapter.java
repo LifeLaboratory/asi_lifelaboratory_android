@@ -1,4 +1,4 @@
-package ru.lifelaboratory.asi;
+package ru.lifelaboratory.asi.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.lifelaboratory.asi.LessonActivity;
+import ru.lifelaboratory.asi.R;
 import ru.lifelaboratory.asi.entity.Document;
 import ru.lifelaboratory.asi.entity.Lesson;
 
@@ -38,7 +40,7 @@ public class LessonAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-    public LessonAdapter(Context context, ArrayList<Document> items) {
+    public LessonAdapter(Context context, List<Document> items) {
         ctx = context;
         this.items = items;
         lInflater = (LayoutInflater) ctx

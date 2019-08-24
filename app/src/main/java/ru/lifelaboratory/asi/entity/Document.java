@@ -2,17 +2,17 @@ package ru.lifelaboratory.asi.entity;
 
 public class Document {
 
-    int id;
-    int idProject;
+    Integer id;
+    Integer[] idProjects;
     String url;
     String title;
-    int type;
+    Integer type;
     String logo;
     String description;
 
-    public Document(int id, int idProject, String url, String title, int type, String logo) {
+    public Document(Integer id, Integer[] idProject, String url, String title, Integer type, String logo) {
         this.id = id;
-        this.idProject = idProject;
+        this.idProjects = idProject;
         this.url = url;
         this.title = title;
         this.type = type;
@@ -34,7 +34,7 @@ public class Document {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -42,12 +42,12 @@ public class Document {
         this.id = id;
     }
 
-    public int getIdProject() {
-        return idProject;
+    public Integer[] getIdProjects() {
+        return idProjects;
     }
 
-    public void setIdProjects(int idProjects) {
-        this.idProject = idProjects;
+    public void setIdProjects(Integer[] idProjects) {
+        this.idProjects = idProjects;
     }
 
     public String getUrl() {
@@ -66,7 +66,7 @@ public class Document {
         this.title = title;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
