@@ -60,7 +60,8 @@ public class InvestorsActivity extends AppCompatActivity implements NavigationVi
         getInvestors.enqueue(new Callback<ArrayList<User>>() {
             @Override
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
-                Log.d(Constants.LOG_TAG, "РАБОТАЕТ");
+                Log.d(Constants.LOG_TAG, response.body().toString());
+                investors.clear();
                 investors.addAll(response.body());
                 investorAdapter.notifyDataSetChanged();
             }
