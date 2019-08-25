@@ -20,14 +20,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.lifelaboratory.asi.adapter.HistoryBudgetAdapter;
 import ru.lifelaboratory.asi.entity.Budget;
 import ru.lifelaboratory.asi.entity.Category;
+import ru.lifelaboratory.asi.entity.HistoryBudget;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
 public class InfoInvestorActivity extends Activity {
 
+    HistoryBudgetAdapter historyBudgetAdapter;
     SharedPreferences memory;
 
     ImageView photo ;
@@ -37,7 +40,7 @@ public class InfoInvestorActivity extends Activity {
     TextView budget;
     ListView invest;
 
-    ArrayList<Budget> listOfBudget = new ArrayList<>();
+    ArrayList<HistoryBudget> listOfBudget = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class InfoInvestorActivity extends Activity {
         categorys = (TextView) findViewById(R.id.category);
         rate = (TextView) findViewById(R.id.rate);
         budget = (TextView) findViewById(R.id.budget);
+        invest = (ListView) findViewById(R.id.invest);
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
@@ -107,6 +111,22 @@ public class InfoInvestorActivity extends Activity {
             }
         });
 
+        Call<ArrayList<HistoryBudget>> invistitions = userService.getInvestitions(idUser);
+        invistitions.enqueue(new Callback<ArrayList<HistoryBudget>>() {
+            @Override
+            public void onResponse(Call<ArrayList<HistoryBudget>> call, Response<ArrayList<HistoryBudget>> response) {
+                listOfBudget.addAll(response.body());
+                historyBudgetAdapter.notifyDataSetChanged();
+                Log.d(Constants.LOG_TAG, "Инвестиции ок");
+            }
 
+            @Override
+            public void onFailure(Call<ArrayList<HistoryBudget>> call, Throwable t) {
+                Log.e(Constants.LOG_TAG, "Инвестиции не ок");
+            }
+        });
+
+        historyBudgetAdapter = new HistoryBudgetAdapter(this, listOfBudget);
+        invest.setAdapter(historyBudgetAdapter);
     }
 }
