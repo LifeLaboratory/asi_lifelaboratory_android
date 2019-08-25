@@ -130,7 +130,7 @@ public class ProjectAdapter extends BaseAdapter {
         });
         ProjectService projectService = retrofit.create(ProjectService.class);
 
-        Call<ArrayList<Category>> projectCategories = projectService.projectCategories(project.getId());
+        Call<ArrayList<Category>> projectCategories = projectService.getCategory(project.getId());
         final View finalView = view;
         projectCategories.enqueue(new Callback<ArrayList<Category>>() {
             @Override
