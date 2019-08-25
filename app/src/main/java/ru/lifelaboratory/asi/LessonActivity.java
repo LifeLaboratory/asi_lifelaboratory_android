@@ -32,7 +32,7 @@ import ru.lifelaboratory.asi.utils.Constants;
 
 
 public class LessonActivity extends AppCompatActivity {
-
+    JcPlayerView jcPlayerView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +46,7 @@ public class LessonActivity extends AppCompatActivity {
             Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                     addConverterFactory(GsonConverterFactory.create()).build();
             LessonService lessonService = retrofit.create(LessonService.class);
-            Call<Document> lesson = lessonService.thislesson((Integer) getIntent().getIntExtra("DOC_ID", -1));
+            final Call<Document> lesson = lessonService.thislesson((Integer) getIntent().getIntExtra("DOC_ID", -1));
             lesson.enqueue(new Callback<Document>() {
                 @Override
                 public void onResponse(Call<Document> call, Response<Document> response) {
@@ -91,12 +91,6 @@ public class LessonActivity extends AppCompatActivity {
                                 LinearLayout.LayoutParams lessonNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                                 lessonName.setLayoutParams(lessonNameParams);
                                 linLayout.addView(lessonName);
-
-                                TextView lessonText = new TextView(LessonActivity.this);
-                                lessonText.setText(response.body().getDescription());
-                                LinearLayout.LayoutParams lessonTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                lessonName.setLayoutParams(lessonNameParams);
-                                linLayout.addView(lessonText);
 
                                 YoutubePlayerView youtubePlayerView = new YoutubePlayerView(LessonActivity.this);
                                 youtubePlayerView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -154,6 +148,12 @@ public class LessonActivity extends AppCompatActivity {
                                 });
                                 youtubePlayerView.play();
 
+                                TextView lessonText = new TextView(LessonActivity.this);
+                                lessonText.setText(response.body().getDescription());
+                                LinearLayout.LayoutParams lessonTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                lessonName.setLayoutParams(lessonNameParams);
+                                linLayout.addView(lessonText);
+
                                 break;
                             }
                             case 2:{
@@ -163,18 +163,20 @@ public class LessonActivity extends AppCompatActivity {
                                 lessonName.setLayoutParams(lessonNameParams);
                                 linLayout.addView(lessonName);
 
+                                jcPlayerView = new JcPlayerView(LessonActivity.this);
+                                jcPlayerView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                ArrayList<JcAudio> jcAudios = new ArrayList<>();
+                                jcAudios.add(JcAudio.createFromURL(response.body().getDescription(),response.body().getUrl()));
+                                jcPlayerView.initPlaylist(jcAudios, null);
+
+                                linLayout.addView(jcPlayerView);
+
                                 TextView lessonText = new TextView(LessonActivity.this);
                                 lessonText.setText(response.body().getDescription());
                                 LinearLayout.LayoutParams lessonTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                                 lessonName.setLayoutParams(lessonNameParams);
                                 linLayout.addView(lessonText);
 
-                                JcPlayerView jcPlayerView = new JcPlayerView(LessonActivity.this);
-                                jcPlayerView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                                ArrayList<JcAudio> jcAudios = new ArrayList<>();
-                                jcAudios.add(JcAudio.createFromURL(response.body().getDescription(),response.body().getUrl()));
-                                jcPlayerView.initPlaylist(jcAudios, null);
-                                linLayout.addView(jcPlayerView);
                                 break;
                             }
                             case 3:{
@@ -193,5 +195,10 @@ public class LessonActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        jcPlayerView.pause();
     }
 }
