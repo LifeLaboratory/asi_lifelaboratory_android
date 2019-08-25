@@ -1,9 +1,15 @@
 package ru.lifelaboratory.asi;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -28,7 +34,7 @@ import ru.lifelaboratory.asi.service.ProjectService;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
-public class InfoProjectActivity extends Activity {
+public class InfoProjectActivity extends Activity  implements NavigationView.OnNavigationItemSelectedListener {
 
     DocumentAdapter documentAdapter;
     SharedPreferences memory;
@@ -114,5 +120,33 @@ public class InfoProjectActivity extends Activity {
                 Log.e(Constants.LOG_TAG, "Помянем проект, ушел в другой мир");
             }
         });
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.nav_docs:
+                startActivity(new Intent(InfoProjectActivity.this, LessonListActivity.class));
+                break;
+            case R.id.nav_services:
+                startActivity(new Intent(InfoProjectActivity.this, ServicesActivity.class));
+                break;
+            case R.id.nav_people:
+                startActivity(new Intent(InfoProjectActivity.this, PeoplesActivity.class));
+                break;
+            case R.id.nav_project:
+                startActivity(new Intent(InfoProjectActivity.this, ProjectActivity.class));
+                break;
+            case R.id.nav_exit:
+                startActivity(new Intent(InfoProjectActivity.this, MainActivity.class));
+                break;
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return false;
     }
 }

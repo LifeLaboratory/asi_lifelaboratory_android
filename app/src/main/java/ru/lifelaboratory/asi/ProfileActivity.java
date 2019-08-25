@@ -91,6 +91,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_project:
                 startActivity(new Intent(ProfileActivity.this, ProjectActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(ProfileActivity.this, InvestorsActivity.class));
+                break;
             case R.id.nav_exit:
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                 break;
