@@ -31,6 +31,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.DocumentAdapter;
 import ru.lifelaboratory.asi.adapter.ProjectAdapter;
+import ru.lifelaboratory.asi.entity.Category;
 import ru.lifelaboratory.asi.entity.Document;
 import ru.lifelaboratory.asi.entity.FilterForDocument;
 import ru.lifelaboratory.asi.entity.Investion;
@@ -48,6 +49,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
 
     ImageView photo ;
     TextView description;
+    TextView category;
     TextView budget;
     TextView infoAuthor;
     ListView listDoc;
@@ -65,10 +67,12 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
 
         photo = (ImageView) findViewById(R.id.photo);
         description = (TextView) findViewById(R.id.description);
+        category = (TextView) findViewById(R.id.category);
         budget = (TextView) findViewById(R.id.budget);
         infoAuthor = (TextView) findViewById(R.id.infoAuthor);
         listDoc = (ListView) findViewById(R.id.listDoc);
         invest = (FloatingActionButton) findViewById(R.id.money);
+
 
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
@@ -128,6 +132,29 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
             @Override
             public void onFailure(Call<Project> call, Throwable t) {
                 Log.e(Constants.LOG_TAG, "Помянем проект, ушел в другой мир");
+            }
+        });
+
+        Call<ArrayList<Category>> categ = projectService.getCategory(idProject);
+        categ.enqueue(new Callback<ArrayList<Category>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Category>> call, Response<ArrayList<Category>> response) {
+                StringBuilder stringBuilder = new StringBuilder();
+                ArrayList<Category> categories = new ArrayList<>();
+                categories.addAll(response.body());
+                for (int index = 0; index < categories.size(); index++) {
+                    if (index != 0) {
+                        stringBuilder.append("/");
+                    }
+                    stringBuilder.append(categories.get(index).getTitle());
+                }
+                category.setText(stringBuilder.toString());
+                Log.e(Constants.LOG_TAG, "Категории ок");
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Category>> call, Throwable t) {
+                Log.e(Constants.LOG_TAG, "Категории не ок");
             }
         });
 

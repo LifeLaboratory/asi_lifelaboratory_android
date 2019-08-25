@@ -74,10 +74,10 @@ public class InfoInvestorActivity extends Activity {
                 Log.e(Constants.LOG_TAG, "Фиксики где вы блять");
             }
         });
-        Call<List<Category>> userCategories = userService.getCategory(idUser);
-        userCategories.enqueue(new Callback<List<Category>>() {
+        Call<ArrayList<Category>> userCategories = userService.getCategory(idUser);
+        userCategories.enqueue(new Callback<ArrayList<Category>>() {
             @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+            public void onResponse(Call<ArrayList<Category>> call, Response<ArrayList<Category>> response) {
                 StringBuilder stringBuilder = new StringBuilder();
                 ArrayList<Category> categories = new ArrayList<>();
                 categories.addAll(response.body());
@@ -88,11 +88,12 @@ public class InfoInvestorActivity extends Activity {
                     stringBuilder.append(categories.get(index));
                 }
                 categorys.setText(stringBuilder.toString());
+                Log.e(Constants.LOG_TAG, "Категории ок");
             }
 
             @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
-
+            public void onFailure(Call<ArrayList<Category>> call, Throwable t) {
+                Log.e(Constants.LOG_TAG, "Категории не ок");
             }
         });
 

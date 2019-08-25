@@ -28,4 +28,7 @@ public interface ProjectService {
     @POST("/project")
     Call<Object> addProject(@Body Project project);
 
+    @GET("/project/{idProject}/category")
+    Call<ArrayList<Category>> getCategory(@Path("idProject") Integer idProject);
+
 }

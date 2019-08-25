@@ -37,6 +37,9 @@ public interface UserService {
 
     @POST("/budget")
     Call<Object> investMoney(@Body Investion investion);
-    @GET("/user/category/{idUser}")
-    Call<List<Category>> getCategory(@Path("idUser") Integer idUser);
+
+    @GET("/user/{idUser}/category")
+    Call<ArrayList<Category>> getCategory(@Path("idUser") Integer idUser);
+
+
 }
