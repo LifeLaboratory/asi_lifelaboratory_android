@@ -1,5 +1,6 @@
 package ru.lifelaboratory.asi.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +25,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.InfoProjectActivity;
 import ru.lifelaboratory.asi.R;
-import ru.lifelaboratory.asi.entity.Category;
 import ru.lifelaboratory.asi.entity.Project;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.UserService;
@@ -124,7 +125,6 @@ public class ProjectAdapter extends BaseAdapter {
                 ProjectAdapter.this.ctx.startActivity(new Intent(ProjectAdapter.this.ctx, InfoProjectActivity.class));
             }
         });
-
         return view;
     }
 }
