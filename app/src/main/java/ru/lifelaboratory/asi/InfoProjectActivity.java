@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
@@ -30,11 +31,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.DocumentAdapter;
-import ru.lifelaboratory.asi.adapter.ProjectAdapter;
+import ru.lifelaboratory.asi.adapter.InvestitionAdapter;
 import ru.lifelaboratory.asi.entity.Category;
 import ru.lifelaboratory.asi.entity.Document;
 import ru.lifelaboratory.asi.entity.FilterForDocument;
 import ru.lifelaboratory.asi.entity.Investion;
+import ru.lifelaboratory.asi.entity.Investor;
 import ru.lifelaboratory.asi.entity.Project;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.DocumentService;
@@ -45,6 +47,7 @@ import ru.lifelaboratory.asi.utils.Constants;
 public class InfoProjectActivity extends Activity  implements NavigationView.OnNavigationItemSelectedListener {
 
     DocumentAdapter documentAdapter;
+    InvestitionAdapter investorAdapter;
     SharedPreferences memory;
 
     ImageView photo ;
@@ -53,17 +56,26 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
     TextView budget;
     TextView infoAuthor;
     ListView listDoc;
+    ListView listInvistition;
     FloatingActionButton invest;
 
     ArrayList<Document> listOfDocument = new ArrayList<>();
+    ArrayList<Investor> listOfInvestor = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_project_layout);
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+        ((ImageView) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(InfoProjectActivity.this, LessonListActivity.class));
+            }
+        });
 
         photo = (ImageView) findViewById(R.id.photo);
         description = (TextView) findViewById(R.id.description);
@@ -71,6 +83,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
         budget = (TextView) findViewById(R.id.budget);
         infoAuthor = (TextView) findViewById(R.id.infoAuthor);
         listDoc = (ListView) findViewById(R.id.listDoc);
+        listInvistition = (ListView) findViewById(R.id.listInvistition);
         invest = (FloatingActionButton) findViewById(R.id.money);
 
 
@@ -198,6 +211,24 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
                 });
             }
         });
+
+        Call<ArrayList<Investor>> investors = projectService.getInvistition(idProject);
+        investors.enqueue(new Callback<ArrayList<Investor>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Investor>> call, Response<ArrayList<Investor>> response) {
+                listOfInvestor.addAll(response.body());
+                investorAdapter.notifyDataSetChanged();
+                Log.e(Constants.LOG_TAG, "Инвестиции ок");
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Investor>> call, Throwable t) {
+                Log.e(Constants.LOG_TAG, "Инвестиции не ок");
+            }
+        });
+
+        investorAdapter = new InvestitionAdapter(this, listOfInvestor);
+        listInvistition.setAdapter(investorAdapter);
     }
 
 

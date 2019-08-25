@@ -185,6 +185,9 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_people:
                 startActivity(new Intent(LessonListActivity.this, PeoplesActivity.class));
                 break;
+            case R.id.nav_profile:
+                startActivity(new Intent(LessonListActivity.this, ProfileActivity.class));
+                break;
             case R.id.nav_project:
                 startActivity(new Intent(LessonListActivity.this, ProjectActivity.class));
                 break;

@@ -201,6 +201,7 @@ public class LessonActivity extends AppCompatActivity {
                             case 3:{
                                 Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(response.body().getUrl()));
                                 startActivity(myIntent);
+                                break;
                             }
                         }
                     } else {

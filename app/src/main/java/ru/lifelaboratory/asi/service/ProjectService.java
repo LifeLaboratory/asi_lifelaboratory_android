@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import ru.lifelaboratory.asi.entity.Category;
+import ru.lifelaboratory.asi.entity.Investor;
 import ru.lifelaboratory.asi.entity.Project;
 
 public interface ProjectService {
@@ -31,4 +32,6 @@ public interface ProjectService {
     @GET("/project/{idProject}/category")
     Call<ArrayList<Category>> getCategory(@Path("idProject") Integer idProject);
 
+    @GET("/project/{idProject}/budget")
+    Call<ArrayList<Investor>> getInvistition(@Path("idProject") Integer idProject);
 }

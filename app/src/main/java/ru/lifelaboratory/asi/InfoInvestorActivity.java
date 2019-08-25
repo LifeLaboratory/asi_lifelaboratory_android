@@ -74,7 +74,8 @@ public class InfoInvestorActivity extends Activity {
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
                 description.setText(response.body().getDescription());
-                rate.setText(String.format("%.3f", response.body().getRate()));
+                rate.setText("Рейтинг: " + String.format("%.2f", response.body().getRate()));
+                budget.setText("Готовность инвестировать: " + String.format("%.3f",response.body().getBudget()));
                 Log.e(Constants.LOG_TAG, "Все ок");
             }
 

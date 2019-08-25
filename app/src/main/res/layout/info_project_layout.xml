@@ -81,13 +81,21 @@
             android:textSize="20sp" />
 
         <ListView
+            android:id="@+id/listInvistition"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <ListView
             android:id="@+id/listDoc"
             android:layout_width="match_parent"
-            android:layout_height="285dp"
+            android:layout_height="120dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
         </ListView>
+
     </LinearLayout>
 
     <RelativeLayout
