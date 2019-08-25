@@ -62,11 +62,12 @@ public class InvestorAdapter extends BaseAdapter {
 
         ImageView logo = (ImageView) view.findViewById(R.id.logo);
         TextView title = (TextView) view.findViewById(R.id.title);
-        TextView budget = (TextView) view.findViewById(R.id.category);
+        TextView budget = (TextView) view.findViewById(R.id.budget);
         TextView description = (TextView) view.findViewById(R.id.description);
         TextView rate = (TextView) view.findViewById(R.id.rate);
         FloatingActionButton info = (FloatingActionButton) view.findViewById(R.id.info);
 
+        budget.setText("Бюджет: " + user.getBudget());
         Picasso.with(this.ctx)
                 .load(user.getPhotoUrl())
                 .placeholder(R.drawable.ic_launcher_foreground)
@@ -80,6 +81,7 @@ public class InvestorAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 memory = InvestorAdapter.this.ctx.getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
+                // TODO: сменить USER_ID на INVESTOR_ID
                 memory.edit().putInt(Constants.USER_ID, user.getId()).commit();
                 InvestorAdapter.this.ctx.startActivity(new Intent(InvestorAdapter.this.ctx, InfoInvestorActivity.class));
             }

@@ -67,7 +67,31 @@
         </LinearLayout>
 
         <TextView
-            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:text="Бюджет"
+            android:id="@+id/user_budget" />
+
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:text="Номер счета"
+            android:id="@+id/user_card" />
+
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -81,6 +105,17 @@
             android:layout_margin="16dp"
             android:textSize="20sp"
             android:text="Вы можете уже сегодня создать свой стартап или стать инвестором! А так же вам доступно нахождение новых сотрудников в разделе Люди"/>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ОТКРЫТЬ ИП"
+            android:id="@+id/btn_register_ip"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"
+            android:layout_margin="16dp"/>
 
     </LinearLayout>
 
