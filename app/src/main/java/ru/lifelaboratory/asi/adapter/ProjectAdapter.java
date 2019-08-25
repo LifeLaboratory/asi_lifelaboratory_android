@@ -108,7 +108,7 @@ public class ProjectAdapter extends BaseAdapter {
         });
         description.setText(project.getDescription());
         budget.setText(String.format("Необходимый бюджет: %.2f", project.getBudget()));
-        rate.setText(String.format("Рейтинг: %.1f", project.getRate()));
+        rate.setText(String.format("Рейтинг: %.2f", project.getRate()));
 
 //        ArrayList<Category> categories = (ArrayList<Category>) project.getCategories();
 //        StringBuilder stringBuilder = new StringBuilder();
@@ -130,7 +130,7 @@ public class ProjectAdapter extends BaseAdapter {
         });
         ProjectService projectService = retrofit.create(ProjectService.class);
 
-        Call<ArrayList<Category>> projectCategories = projectService.projectCategories(project.getId());
+        Call<ArrayList<Category>> projectCategories = projectService.getCategory(project.getId());
         final View finalView = view;
         projectCategories.enqueue(new Callback<ArrayList<Category>>() {
             @Override

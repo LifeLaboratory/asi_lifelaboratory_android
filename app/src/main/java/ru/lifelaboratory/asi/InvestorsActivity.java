@@ -90,12 +90,19 @@ public class InvestorsActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_people:
                 startActivity(new Intent(InvestorsActivity.this, PeoplesActivity.class));
                 break;
+            case R.id.nav_profile:
+                startActivity(new Intent(InvestorsActivity.this, ProfileActivity.class));
+                break;
             case R.id.nav_project:
                 startActivity(new Intent(InvestorsActivity.this, ProjectActivity.class));
                 break;
             case R.id.nav_exit:
                 startActivity(new Intent(InvestorsActivity.this, MainActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(InvestorsActivity.this, InvestorsActivity.class));
+                break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
