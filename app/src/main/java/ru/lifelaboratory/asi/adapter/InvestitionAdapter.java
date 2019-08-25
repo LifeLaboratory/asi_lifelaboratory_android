@@ -51,7 +51,7 @@ public class InvestitionAdapter extends BaseAdapter {
         TextView budget = (TextView) view.findViewById(R.id.budget);
 
         name.setText(investor.getName());
-        budget.setText(String.format("%.2f", investor.getBudget()));
+        budget.setText(String.format("Инвестиции: %.2f", investor.getBudget()));
 
         return view;
     }

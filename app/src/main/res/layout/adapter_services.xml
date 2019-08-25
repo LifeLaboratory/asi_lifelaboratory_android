@@ -31,7 +31,7 @@
                     android:gravity="center_vertical"
                     android:text="Пример"
                     android:textColor="#fff"
-                    android:textSize="16dp"
+                    android:textSize="20sp"
                     android:layout_margin="16dp" />
 
                 <TextView
@@ -41,7 +41,7 @@
                     android:text="Описание"
                     android:textColor="#fff"
                     android:layout_margin="16dp"
-                    android:textSize="14dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

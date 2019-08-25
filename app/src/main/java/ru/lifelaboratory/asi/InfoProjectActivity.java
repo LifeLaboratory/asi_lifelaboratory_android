@@ -73,7 +73,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
         ((ImageView) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(InfoProjectActivity.this, LessonListActivity.class));
+                startActivity(new Intent(InfoProjectActivity.this, ProjectActivity.class));
             }
         });
 

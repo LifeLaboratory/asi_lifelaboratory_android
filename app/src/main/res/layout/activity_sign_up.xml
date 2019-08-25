@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#fff">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -34,59 +35,70 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <EditText
-            android:textColor="#004478"
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user_login"
-            android:hint="Логин" />
-
-        <EditText
-            android:textColor="#004478"
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user_password"
-            android:inputType="textPassword"
-            android:hint="Пароль" />
-
-        <EditText
-            android:textColor="#004478"
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user_repassword"
-            android:inputType="textPassword"
-            android:hint="Повтор пароля" />
-
-        <EditText
-            android:textColor="#004478"
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user_name"
-            android:hint="ФИО" />
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
-            <Button
-                android:layout_margin="5dp"
+            <EditText
+                android:textColor="#004478"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_login"
+                android:hint="Логин" />
+
+            <EditText
+                android:textColor="#004478"
+                android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#0a55a6"
-                android:textColor="#fff"
-                android:id="@+id/btn_signup"
-                android:text="Регистрация"/>
+                android:id="@+id/user_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:hint="Пароль" />
+
+            <EditText
+                android:textColor="#004478"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_repassword"
+                android:inputType="textPassword"
+                android:hint="Повтор пароля" />
+
+            <EditText
+                android:textColor="#004478"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_name"
+                android:inputType="text"
+                android:hint="ФИО" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#0a55a6"
+                    android:textColor="#fff"
+                    android:id="@+id/btn_signup"
+                    android:text="Регистрация"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

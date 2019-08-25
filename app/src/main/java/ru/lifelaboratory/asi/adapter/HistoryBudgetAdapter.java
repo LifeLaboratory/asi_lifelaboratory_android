@@ -50,7 +50,7 @@ public class HistoryBudgetAdapter extends BaseAdapter {
         TextView budget = (TextView) view.findViewById(R.id.budget);
 
         name.setText(historyBudget.getTitle());
-        budget.setText(String.format("%.2f", historyBudget.getBudget()));
+        budget.setText(String.format("Сумма: %.2f", historyBudget.getBudget()));
 
         return view;
     }

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#fff">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -27,69 +28,65 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
+    <LinearLayout
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="102dp"
+                android:layout_height="98dp"
+                app:srcCompat="@mipmap/icon_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_margin="5dp">
 
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="102dp"
-                    android:layout_height="98dp"
-                    app:srcCompat="@mipmap/icon_launcher" />
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="TextView"
+                    android:textSize="25sp"
+                    android:textColor="#000"/>
 
-                    <TextView
-                        android:id="@+id/category"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textSize="36sp" />
-
-                    <TextView
-                        android:id="@+id/rate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textSize="36sp" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="20sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="36sp" />
-
-            <TextView
-                android:id="@+id/budget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="36sp" />
-
-            <ListView
-                android:id="@+id/invest"
-                android:layout_width="match_parent"
-                android:layout_height="475dp">
-
-            </ListView>
-
         </LinearLayout>
-    </ScrollView>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:text="TextView"
+            android:id="@+id/budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/invest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+     </LinearLayout>
 
 </LinearLayout>
