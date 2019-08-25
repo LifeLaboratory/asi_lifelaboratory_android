@@ -1,6 +1,7 @@
 package ru.lifelaboratory.asi.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,5 +21,11 @@ public interface ProjectService {
 
     @GET("/project/{idProject}")
     Call<Project> getProject(@Path("idProject") Integer idProject);
+
+    @GET("/project")
+    Call<List<Project>> getAllProject();
+
+    @POST("/project")
+    Call<Object> addProject(@Body Project project);
 
 }

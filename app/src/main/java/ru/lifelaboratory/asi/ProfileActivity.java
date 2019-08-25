@@ -72,7 +72,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 Log.e(Constants.LOG_TAG, "ProfileActivity error: " + t.getMessage());
             }
         });
-
     }
 
     @Override

@@ -1,6 +1,8 @@
 package ru.lifelaboratory.asi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +55,7 @@ public class DocumentAdapter extends BaseAdapter {
         ImageView logo = (ImageView) view.findViewById(R.id.photo);
         TextView title = (TextView) view.findViewById(R.id.title);
 
-        Document document = (Document) getItem(position);
+        final Document document = (Document) getItem(position);
 
         Picasso.with(this.ctx)
                 .load(document.getPhoto())
@@ -61,6 +63,15 @@ public class DocumentAdapter extends BaseAdapter {
                 .error(R.drawable.ic_launcher_foreground)
                 .into(logo);
         title.setText(document.getTitle());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(document.getUrl()));
+                ctx.startActivity(i);
+            }
+        });
 
         return view;
     }

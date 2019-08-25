@@ -94,7 +94,7 @@ public class ProjectAdapter extends BaseAdapter {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 Log.d(Constants.LOG_TAG, "ЗА АРДУ");
-                author.setText(response.body().getName());
+                author.setText("Автор: " + response.body().getName());
             }
 
             @Override
@@ -103,18 +103,18 @@ public class ProjectAdapter extends BaseAdapter {
             }
         });
         description.setText(project.getDescription());
-        budget.setText(String.format("%f", project.getBudget()));
-        rate.setText(String.format("%f", project.getRate()));
+        budget.setText(String.format("Необходимый бюджет: %.2f", project.getBudget()));
+        rate.setText(String.format("Рейтинг: %.1f", project.getRate()));
 
-        ArrayList<Category> categories = (ArrayList<Category>) project.getCategories();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int index = 0; index < categories.size(); index++) {
-            if (index != 0) {
-                stringBuilder.append("/");
-            }
-            stringBuilder.append(categories.get(index).getTitle());
-        }
-        category.setText(stringBuilder.toString());
+//        ArrayList<Category> categories = (ArrayList<Category>) project.getCategories();
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (int index = 0; index < categories.size(); index++) {
+//            if (index != 0) {
+//                stringBuilder.append("/");
+//            }
+//            stringBuilder.append(categories.get(index).getTitle());
+//        }
+//        category.setText(stringBuilder.toString());
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override

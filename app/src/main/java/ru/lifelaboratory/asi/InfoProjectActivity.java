@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,9 @@ public class InfoProjectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_project_layout);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         photo = (ImageView) findViewById(R.id.photo);
         description = (TextView) findViewById(R.id.description);
         budget = (TextView) findViewById(R.id.budget);
@@ -72,13 +76,13 @@ public class InfoProjectActivity extends Activity {
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
                 description.setText(response.body().getDescription());
-                budget.setText(String.format("%f", response.body().getBudget()));
+                budget.setText(String.format("Бюджет: %f", response.body().getBudget()));
                 Call<User> user = userService.profile(response.body().getId());
                 user.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         Log.d(Constants.LOG_TAG, "Гуд, мы нашли usera");
-                        infoAuthor.setText(response.body().getName());
+                        infoAuthor.setText("Пользователь: " + response.body().getName());
                     }
 
                     @Override
