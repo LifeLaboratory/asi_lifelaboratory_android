@@ -28,6 +28,8 @@ public class User {
     @SerializedName("photo")
     String photoUrl;
     ArrayList<Category> categories;
+    Double budget;
+    String card;
 
     public User(String name,
                 String login,

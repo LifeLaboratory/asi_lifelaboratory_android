@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,15 +66,6 @@ public class InfoInvestorActivity extends Activity {
                         .into(photo);
                 description.setText(response.body().getDescription());
                 rate.setText(String.format("%f", response.body().getRate()));
-                StringBuilder stringBuilder = new StringBuilder();
-                ArrayList<Category> categories = response.body().getCategories();
-                for (int index = 0; index < categories.size(); index++) {
-                    if (index != 0) {
-                        stringBuilder.append("/");
-                    }
-                    stringBuilder.append(categories.get(index));
-                }
-                categorys.setText(stringBuilder.toString());
                 Log.e(Constants.LOG_TAG, "Все ок");
             }
 
@@ -82,5 +74,28 @@ public class InfoInvestorActivity extends Activity {
                 Log.e(Constants.LOG_TAG, "Фиксики где вы блять");
             }
         });
+        Call<List<Category>> userCategories = userService.getCategory(idUser);
+        userCategories.enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                StringBuilder stringBuilder = new StringBuilder();
+                ArrayList<Category> categories = new ArrayList<>();
+                categories.addAll(response.body());
+                for (int index = 0; index < categories.size(); index++) {
+                    if (index != 0) {
+                        stringBuilder.append("/");
+                    }
+                    stringBuilder.append(categories.get(index));
+                }
+                categorys.setText(stringBuilder.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+
+            }
+        });
+
+
     }
 }

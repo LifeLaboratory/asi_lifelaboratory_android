@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:textColor="#004478"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lesson_title"
+        android:hint="Название" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:id="@+id/lesson_type">
+
+        <RadioButton
+            android:id="@+id/lesson_type_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Текст" />
+
+        <RadioButton
+            android:id="@+id/lesson_type_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Видео" />
+
+        <RadioButton
+            android:id="@+id/lesson_type_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Аудио" />
+
+        <RadioButton
+            android:id="@+id/lesson_type_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ссылка" />
+
+    </RadioGroup>
+
+    <EditText
+        android:textColor="#004478"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lesson_url"
+        android:hint="Содержимое" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Отмена"
+            android:id="@+id/btn_dialog_cancel"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:layout_margin="5dp"/>
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить"
+            android:id="@+id/btn_dialog_add"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

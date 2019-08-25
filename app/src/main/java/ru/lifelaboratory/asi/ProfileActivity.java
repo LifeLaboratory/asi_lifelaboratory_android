@@ -12,8 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,12 +67,21 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     ((TextView) findViewById(R.id.user_name)).setText(tmpUser.getName() == null ? "Anonymous" : tmpUser.getName());
                     ((TextView) findViewById(R.id.user_rate)).setText("Рейтинг: " + tmpUser.getRate());
                     ((TextView) findViewById(R.id.user_description)).setText(tmpUser.getDescription() == null ? "Нет описания" : "Описание: " + tmpUser.getDescription());
+                    ((TextView) findViewById(R.id.user_budget)).setText("Бюджет: " + tmpUser.getBudget());
+                    ((TextView) findViewById(R.id.user_card)).setText("Номер счета: " + tmpUser.getCard());
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e(Constants.LOG_TAG, "ProfileActivity error: " + t.getMessage());
+            }
+        });
+
+        ((Button) findViewById(R.id.btn_register_ip)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ProfileActivity.this, "Андрей, пришло твое время!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -90,6 +102,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
             case R.id.nav_project:
                 startActivity(new Intent(ProfileActivity.this, ProjectActivity.class));
+                break;
+            case R.id.nav_investors:
+                startActivity(new Intent(ProfileActivity.this, InvestorsActivity.class));
                 break;
             case R.id.nav_exit:
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));

@@ -65,12 +65,15 @@ public class MainActivity extends AppCompatActivity {
                             memory.edit().putInt(Constants.USER_ID, response.body().getIdUser()).commit();
                             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         } else {
+                            Toast.makeText(MainActivity.this, "Неверный логин или пароль", Toast.LENGTH_LONG).show();
                             Log.e(Constants.LOG_TAG, response.body().toString());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<StatusSignIn> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Ошибка соединения с сервером", Toast.LENGTH_LONG).show();
+
                         Log.e(Constants.LOG_TAG, "MainActivity error: " + t.getMessage());
                     }
                 });
