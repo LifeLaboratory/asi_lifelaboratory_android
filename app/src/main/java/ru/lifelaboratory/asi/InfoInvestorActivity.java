@@ -94,7 +94,7 @@ public class InfoInvestorActivity extends Activity {
                     if (index != 0) {
                         stringBuilder.append("/");
                     }
-                    stringBuilder.append(categories.get(index));
+                    stringBuilder.append(categories.get(index).getTitle());
                 }
                 categorys.setText(stringBuilder.toString());
                 Log.e(Constants.LOG_TAG, "Категории ок");

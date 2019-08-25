@@ -41,5 +41,4 @@ public interface UserService {
     @GET("/user/{idUser}/category")
     Call<ArrayList<Category>> getCategory(@Path("idUser") Integer idUser);
 
-
 }

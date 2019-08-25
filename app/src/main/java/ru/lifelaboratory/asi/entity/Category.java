@@ -1,5 +1,7 @@
 package ru.lifelaboratory.asi.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Category {
-
+    @SerializedName("id_category")
     Integer id;
     String title;
 

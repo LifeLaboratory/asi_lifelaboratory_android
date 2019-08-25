@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,8 +26,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.InfoProjectActivity;
 import ru.lifelaboratory.asi.R;
+import ru.lifelaboratory.asi.entity.Category;
 import ru.lifelaboratory.asi.entity.Project;
 import ru.lifelaboratory.asi.entity.User;
+import ru.lifelaboratory.asi.service.ProjectService;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
@@ -38,7 +41,7 @@ public class ProjectAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     ArrayList<Project> projects;
     SharedPreferences memory;
-
+    TextView category;
     public ProjectAdapter(Context ctx,
                           ArrayList<Project> projects) {
         this.ctx = ctx;
@@ -65,6 +68,7 @@ public class ProjectAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
         View view = convertView;
         if (view == null) {
             view = lInflater.inflate(R.layout.project_item, parent, false);
@@ -75,7 +79,6 @@ public class ProjectAdapter extends BaseAdapter {
         ImageView logo = (ImageView) view.findViewById(R.id.photo);
         TextView title = (TextView) view.findViewById(R.id.title);
         final TextView author = (TextView) view.findViewById(R.id.author);
-        TextView category = (TextView) view.findViewById(R.id.category);
         TextView description = (TextView) view.findViewById(R.id.description);
         TextView budget = (TextView) view.findViewById(R.id.budget);
         TextView rate = (TextView) view.findViewById(R.id.rate);
@@ -124,6 +127,31 @@ public class ProjectAdapter extends BaseAdapter {
                 memory.edit().putInt(Constants.PROJECT_ID, project.getId()).commit();
                 ProjectAdapter.this.ctx.startActivity(new Intent(ProjectAdapter.this.ctx, InfoProjectActivity.class));
             }
+        });
+        ProjectService projectService = retrofit.create(ProjectService.class);
+
+        Call<ArrayList<Category>> projectCategories = projectService.projectCategories(project.getId());
+        final View finalView = view;
+        projectCategories.enqueue(new Callback<ArrayList<Category>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Category>> call, Response<ArrayList<Category>> response) {
+                category = (TextView) finalView.findViewById(R.id.category);
+                ArrayList<Category> categories = new ArrayList<>();
+                categories.addAll(response.body());
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int index = 0; index < categories.size(); index++) {
+                    if (index != 0) {
+                        stringBuilder.append("/");
+                    }
+                    stringBuilder.append(categories.get(index).getTitle());
+                }
+                category.setText(stringBuilder.toString());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Category>> call, Throwable t) {
+
+                }
         });
         return view;
     }
