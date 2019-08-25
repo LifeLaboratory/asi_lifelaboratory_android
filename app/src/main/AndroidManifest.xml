@@ -33,7 +33,10 @@
             android:name=".LessonListActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LessonActivity" />
+        <activity android:name=".LessonActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label=""
+            />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
