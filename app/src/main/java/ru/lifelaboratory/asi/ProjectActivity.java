@@ -176,6 +176,10 @@ public class ProjectActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_exit:
                 startActivity(new Intent(ProjectActivity.this, MainActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(ProjectActivity.this, InvestorsActivity.class));
+                break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
