@@ -63,10 +63,10 @@
         android:id="@+id/btn_add_project"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/plus_icon"
-        android:layout_gravity="end|bottom" />
+        android:layout_marginBottom="70dp"
+        android:clickable="true"
+        android:src="@drawable/plus_icon" />
 
 </android.support.design.widget.CoordinatorLayout>
