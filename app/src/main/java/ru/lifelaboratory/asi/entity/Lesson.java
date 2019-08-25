@@ -15,5 +15,5 @@ public class Lesson {
     Integer id;
     String title;
     Integer type;
-
+    String url;
 }
