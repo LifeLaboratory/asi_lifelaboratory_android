@@ -52,6 +52,10 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name=".RegisterIPActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".InfoProjectActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

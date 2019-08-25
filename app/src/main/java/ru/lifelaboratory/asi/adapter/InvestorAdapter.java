@@ -75,7 +75,7 @@ public class InvestorAdapter extends BaseAdapter {
                 .into(logo);
         title.setText(user.getName());
         description.setText(user.getDescription());
-        rate.setText(String.format("%.3f", user.getRate()));
+        rate.setText(String.format("Рейтинг: %.3f", user.getRate()));
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
