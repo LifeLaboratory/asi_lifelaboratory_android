@@ -29,7 +29,10 @@
             android:name=".ProfileActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".LessonListActivity"></activity>
+        <activity
+            android:name=".LessonListActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LessonActivity" />
         <activity
             android:name=".MainActivity"

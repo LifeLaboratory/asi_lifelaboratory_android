@@ -3,6 +3,7 @@ package ru.lifelaboratory.asi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.LessonAdapter;
 import ru.lifelaboratory.asi.entity.Document;
-import ru.lifelaboratory.asi.entity.StatusSignIn;
 import ru.lifelaboratory.asi.service.LessonService;
 import ru.lifelaboratory.asi.utils.Constants;
 
@@ -26,6 +26,10 @@ public class LessonListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
         LessonService lessonService = retrofit.create(LessonService.class);
