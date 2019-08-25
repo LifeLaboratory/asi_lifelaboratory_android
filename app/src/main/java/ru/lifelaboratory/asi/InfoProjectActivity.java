@@ -113,7 +113,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
                 title.setText(response.body().getTitle());
                 description.setText(response.body().getDescription());
                 budget.setText(String.format("Бюджет: %.3f", response.body().getBudget()));
-                Call<User> user = userService.profile(response.body().getId());
+                Call<User> user = userService.profile(response.body().getIdAuthor());
                 user.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
