@@ -2,9 +2,13 @@ package ru.lifelaboratory.asi;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -27,20 +31,34 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.entity.Document;
+import ru.lifelaboratory.asi.entity.Lesson;
 import ru.lifelaboratory.asi.service.LessonService;
 import ru.lifelaboratory.asi.utils.Constants;
 
 
 public class LessonActivity extends AppCompatActivity {
     JcPlayerView jcPlayerView = null;
+    int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_lesson);
-        final LinearLayout linLayout = new LinearLayout(this);
-        linLayout.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
-        setContentView(linLayout, linLayoutParam);
+        setContentView(R.layout.activity_lesson);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ((ImageView) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LessonActivity.this, LessonListActivity.class));
+            }
+        });
+        final LinearLayout linLayout = findViewById(R.id.mainLayout);
+        //final LinearLayout linLayout = new LinearLayout(this);
+        //linLayout.setOrientation(LinearLayout.VERTICAL);
+        //LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
+        //setContentView(linLayout, linLayoutParam);
         if(getIntent().getIntExtra("DOC_ID", -1)!= -1){
 
             Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
@@ -52,7 +70,8 @@ public class LessonActivity extends AppCompatActivity {
                 public void onResponse(Call<Document> call, Response<Document> response) {
                     if (response.body() != null){
                         Log.e(Constants.LOG_TAG, response.body().toString());
-                        switch (response.body().getType()) {
+                        type = response.body().getType();
+                        switch (type) {
                             case 0: {
                                 TextView lessonName = new TextView(LessonActivity.this);
                                 lessonName.setText(response.body().getTitle());
@@ -199,6 +218,6 @@ public class LessonActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        jcPlayerView.pause();
+        if(type == 2)jcPlayerView.pause();
     }
 }
