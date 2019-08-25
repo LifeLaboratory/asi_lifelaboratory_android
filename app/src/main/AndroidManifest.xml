@@ -57,14 +57,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InfoProjectActivity"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".InvestorsActivity"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".InfoInvestorActivity"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
