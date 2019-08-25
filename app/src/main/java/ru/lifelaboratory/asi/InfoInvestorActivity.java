@@ -1,9 +1,11 @@
 package ru.lifelaboratory.asi;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,6 +52,13 @@ public class InfoInvestorActivity extends Activity {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
+
+        ((ImageView) findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(InfoInvestorActivity.this, InvestorsActivity.class));
+            }
+        });
 
         final UserService userService = retrofit.create(UserService.class);
         memory = getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
