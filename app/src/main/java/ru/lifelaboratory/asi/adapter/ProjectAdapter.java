@@ -138,7 +138,7 @@ public class ProjectAdapter extends BaseAdapter {
 
             @Override
             public void onFailure(Call<ArrayList<Category>> call, Throwable t) {
-
+                Log.e(Constants.LOG_TAG, "Фиксики сюда бл#%$ть");
             }
         });
 

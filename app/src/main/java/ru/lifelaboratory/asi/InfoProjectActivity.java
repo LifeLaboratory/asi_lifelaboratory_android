@@ -51,6 +51,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
     SharedPreferences memory;
 
     ImageView photo ;
+    TextView title;
     TextView description;
     TextView category;
     TextView budget;
@@ -79,6 +80,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
 
         photo = (ImageView) findViewById(R.id.photo);
         description = (TextView) findViewById(R.id.description);
+        title = (TextView) findViewById(R.id.title);
         category = (TextView) findViewById(R.id.category);
         budget = (TextView) findViewById(R.id.budget);
         infoAuthor = (TextView) findViewById(R.id.infoAuthor);
@@ -108,6 +110,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
+                title.setText(response.body().getTitle());
                 description.setText(response.body().getDescription());
                 budget.setText(String.format("Бюджет: %.3f", response.body().getBudget()));
                 Call<User> user = userService.profile(response.body().getId());

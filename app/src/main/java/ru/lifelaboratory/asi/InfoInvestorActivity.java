@@ -38,6 +38,7 @@ public class InfoInvestorActivity extends Activity {
     TextView categorys;
     TextView rate;
     TextView budget;
+    TextView name;
     ListView invest;
 
     ArrayList<HistoryBudget> listOfBudget = new ArrayList<>();
@@ -49,6 +50,7 @@ public class InfoInvestorActivity extends Activity {
 
         photo = (ImageView) findViewById(R.id.logo);
         description = (TextView) findViewById(R.id.description);
+        name = (TextView) findViewById(R.id.name);
         categorys = (TextView) findViewById(R.id.category);
         rate = (TextView) findViewById(R.id.rate);
         budget = (TextView) findViewById(R.id.budget);
@@ -77,6 +79,7 @@ public class InfoInvestorActivity extends Activity {
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
+                name.setText(response.body().getName());
                 description.setText(response.body().getDescription());
                 rate.setText("Рейтинг: " + String.format("%.2f", response.body().getRate()));
                 budget.setText("Готовность инвестировать: " + String.format("%.3f",response.body().getBudget()));
