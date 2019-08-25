@@ -81,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         ((Button) findViewById(R.id.btn_register_ip)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ProfileActivity.this, "Андрей, пришло твое время!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ProfileActivity.this, RegisterIPActivity.class));
             }
         });
     }
