@@ -10,6 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import ru.lifelaboratory.asi.entity.CV;
 import ru.lifelaboratory.asi.entity.Category;
+import ru.lifelaboratory.asi.entity.Investion;
 import ru.lifelaboratory.asi.entity.StatusSignIn;
 import ru.lifelaboratory.asi.entity.StatusSignUp;
 import ru.lifelaboratory.asi.entity.User;
@@ -34,6 +35,8 @@ public interface UserService {
     @GET("/investors")
     Call<ArrayList<User>> getInvestors();
 
+    @POST("/budget")
+    Call<Object> investMoney(@Body Investion investion);
     @GET("/user/category/{idUser}")
     Call<List<Category>> getCategory(@Path("idUser") Integer idUser);
 }

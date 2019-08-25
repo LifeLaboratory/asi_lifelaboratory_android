@@ -1,16 +1,21 @@
 package ru.lifelaboratory.asi;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.View;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,8 +30,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.DocumentAdapter;
+import ru.lifelaboratory.asi.adapter.ProjectAdapter;
 import ru.lifelaboratory.asi.entity.Document;
 import ru.lifelaboratory.asi.entity.FilterForDocument;
+import ru.lifelaboratory.asi.entity.Investion;
 import ru.lifelaboratory.asi.entity.Project;
 import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.DocumentService;
@@ -44,6 +51,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
     TextView budget;
     TextView infoAuthor;
     ListView listDoc;
+    FloatingActionButton invest;
 
     ArrayList<Document> listOfDocument = new ArrayList<>();
 
@@ -60,6 +68,8 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
         budget = (TextView) findViewById(R.id.budget);
         infoAuthor = (TextView) findViewById(R.id.infoAuthor);
         listDoc = (ListView) findViewById(R.id.listDoc);
+        invest = (FloatingActionButton) findViewById(R.id.money);
+
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
@@ -82,7 +92,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
                 description.setText(response.body().getDescription());
-                budget.setText(String.format("Бюджет: %f", response.body().getBudget()));
+                budget.setText(String.format("Бюджет: %.3f", response.body().getBudget()));
                 Call<User> user = userService.profile(response.body().getId());
                 user.enqueue(new Callback<User>() {
                     @Override
@@ -118,6 +128,47 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
             @Override
             public void onFailure(Call<Project> call, Throwable t) {
                 Log.e(Constants.LOG_TAG, "Помянем проект, ушел в другой мир");
+            }
+        });
+
+        invest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(InfoProjectActivity.this);
+                dialog.setTitle("Инвестиция в проект");
+                dialog.setContentView(R.layout.invest_activity);
+
+                dialog.show();
+
+                ((Button) dialog.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                ((Button) dialog.findViewById(R.id.ok)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText money = dialog.findViewById(R.id.invest);
+                        Call<Object> investion = userService.investMoney(
+                                new Investion(Integer.valueOf(memory.getInt(Constants.USER_ID, 0)),
+                                        idProject,
+                                        Integer.valueOf(money.getText().toString())));
+                        investion.enqueue(new Callback<Object>() {
+                            @Override
+                            public void onResponse(Call<Object> call, Response<Object> response) {
+                                Log.d(Constants.LOG_TAG, "Все хорошо");
+                                dialog.cancel();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Object> call, Throwable t) {
+                                Log.e(Constants.LOG_TAG, "Гномы все СПИ%#&ЛИ");
+                            }
+                        });
+                    }
+                });
             }
         });
     }

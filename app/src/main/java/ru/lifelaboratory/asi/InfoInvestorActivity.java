@@ -53,7 +53,7 @@ public class InfoInvestorActivity extends Activity {
 
         final UserService userService = retrofit.create(UserService.class);
         memory = getSharedPreferences(Constants.MEMORY, MODE_PRIVATE);
-        Integer idUser = memory.getInt(Constants.USER_ID, 0);
+        Integer idUser = memory.getInt(Constants.INVESTOR_ID, 0);
 
         Call<User> user = userService.profile(idUser);
         user.enqueue(new Callback<User>() {
@@ -65,7 +65,7 @@ public class InfoInvestorActivity extends Activity {
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
                 description.setText(response.body().getDescription());
-                rate.setText(String.format("%f", response.body().getRate()));
+                rate.setText(String.format("%.3f", response.body().getRate()));
                 Log.e(Constants.LOG_TAG, "Все ок");
             }
 

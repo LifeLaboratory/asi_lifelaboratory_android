@@ -2,15 +2,16 @@ package ru.lifelaboratory.asi.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class Budget {
+@AllArgsConstructor
+public class Investion {
 
     @SerializedName("id_user")
     Integer idUser;
-    ArrayList<String> projects = new ArrayList<>();
-    ArrayList<Float> budgets = new ArrayList<>();
+    @SerializedName("id_project")
+    Integer idProject;
+    Integer budget;
 }
