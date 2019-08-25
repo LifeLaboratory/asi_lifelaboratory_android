@@ -31,6 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.lifelaboratory.asi.adapter.DocumentAdapter;
+import ru.lifelaboratory.asi.adapter.InvestitionAdapter;
 import ru.lifelaboratory.asi.entity.Category;
 import ru.lifelaboratory.asi.entity.Document;
 import ru.lifelaboratory.asi.entity.FilterForDocument;
