@@ -92,7 +92,7 @@ public class InfoProjectActivity extends Activity  implements NavigationView.OnN
                         .error(R.drawable.ic_launcher_foreground)
                         .into(photo);
                 description.setText(response.body().getDescription());
-                budget.setText(String.format("Бюджет: %f", response.body().getBudget()));
+                budget.setText(String.format("Бюджет: %.3f", response.body().getBudget()));
                 Call<User> user = userService.profile(response.body().getId());
                 user.enqueue(new Callback<User>() {
                     @Override
