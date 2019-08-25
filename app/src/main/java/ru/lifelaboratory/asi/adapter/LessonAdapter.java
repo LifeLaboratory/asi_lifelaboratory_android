@@ -3,6 +3,7 @@ package ru.lifelaboratory.asi.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,12 @@ import java.util.List;
 import ru.lifelaboratory.asi.LessonActivity;
 import ru.lifelaboratory.asi.R;
 import ru.lifelaboratory.asi.entity.Document;
+import ru.lifelaboratory.asi.utils.Constants;
 
 public class LessonAdapter extends BaseAdapter {
     List<Document> items = new ArrayList<>();
     Context ctx = null;
     LayoutInflater lInflater = null;
-    Document doc = null;
 
     @Override
     public int getCount() {
@@ -47,11 +48,12 @@ public class LessonAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = lInflater.inflate(R.layout.lesson_layout, parent, false);
         }
-        doc = items.get(position);
+        final Document doc = items.get(position);
+        Log.e(Constants.LOG_TAG, String.valueOf(position));
         ((TextView)convertView.findViewById(R.id.elementTitle)).setText(doc.getTitle());
         ImageView photo = (ImageView)convertView.findViewById(R.id.elementImg);
         Picasso.with(this.ctx)
@@ -65,6 +67,8 @@ public class LessonAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent toDocInfo = new Intent(ctx, LessonActivity.class);
+                Log.e(Constants.LOG_TAG, doc.getId().toString());
+                Log.e(Constants.LOG_TAG, String.valueOf(position));
                 toDocInfo.putExtra("DOC_ID", doc.getId());
                 ctx.startActivity(toDocInfo);
             }

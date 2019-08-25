@@ -15,6 +15,7 @@ import lombok.ToString;
 @Setter
 public class Document {
 
+    @SerializedName("id_document")
     Integer id;
     @SerializedName("id_projects")
     Integer[] idProjects;

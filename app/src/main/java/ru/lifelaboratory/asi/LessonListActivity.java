@@ -34,8 +34,9 @@ public class LessonListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Document>> call, Response<List<Document>> response) {
                 if (response.body() != null) {
-                    Log.e(Constants.LOG_TAG, response.body().toString());
+                    items.clear();
                     items.addAll(response.body());
+                    lessonAdapter.notifyDataSetChanged();
                 } else {
                     Log.e(Constants.LOG_TAG, response.body().toString());
                 }
