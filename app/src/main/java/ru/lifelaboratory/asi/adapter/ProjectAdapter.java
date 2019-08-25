@@ -1,6 +1,5 @@
 package ru.lifelaboratory.asi.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,15 +107,6 @@ public class ProjectAdapter extends BaseAdapter {
         budget.setText(String.format("Необходимый бюджет: %.2f", project.getBudget()));
         rate.setText(String.format("Рейтинг: %.2f", project.getRate()));
 
-//        ArrayList<Category> categories = (ArrayList<Category>) project.getCategories();
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for (int index = 0; index < categories.size(); index++) {
-//            if (index != 0) {
-//                stringBuilder.append("/");
-//            }
-//            stringBuilder.append(categories.get(index).getTitle());
-//        }
-//        category.setText(stringBuilder.toString());
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,8 +139,11 @@ public class ProjectAdapter extends BaseAdapter {
             @Override
             public void onFailure(Call<ArrayList<Category>> call, Throwable t) {
 
-                }
+            }
         });
+
+
+
         return view;
     }
 }
