@@ -1,8 +1,14 @@
 package ru.lifelaboratory.asi;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,7 +23,7 @@ import ru.lifelaboratory.asi.entity.User;
 import ru.lifelaboratory.asi.service.UserService;
 import ru.lifelaboratory.asi.utils.Constants;
 
-public class InvestorsActivity extends Activity {
+public class InvestorsActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
     InvestorAdapter investorAdapter;
     ArrayList<User> investors = new ArrayList<>();
@@ -49,5 +55,32 @@ public class InvestorsActivity extends Activity {
 
         ListView investorList = (ListView) findViewById(R.id.investors);
         investorList.setAdapter(investorAdapter);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.nav_docs:
+                startActivity(new Intent(InvestorsActivity.this, LessonListActivity.class));
+                break;
+            case R.id.nav_services:
+                startActivity(new Intent(InvestorsActivity.this, ServicesActivity.class));
+                break;
+            case R.id.nav_people:
+                startActivity(new Intent(InvestorsActivity.this, PeoplesActivity.class));
+                break;
+            case R.id.nav_project:
+                startActivity(new Intent(InvestorsActivity.this, ProjectActivity.class));
+                break;
+            case R.id.nav_exit:
+                startActivity(new Intent(InvestorsActivity.this, MainActivity.class));
+                break;
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return false;
     }
 }

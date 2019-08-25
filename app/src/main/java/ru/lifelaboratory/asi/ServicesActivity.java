@@ -98,6 +98,9 @@ public class ServicesActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_project:
                 startActivity(new Intent(ServicesActivity.this, ProjectActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(ServicesActivity.this, InvestorsActivity.class));
+                break;
             case R.id.nav_exit:
                 startActivity(new Intent(ServicesActivity.this, MainActivity.class));
                 break;

@@ -191,6 +191,9 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_exit:
                 startActivity(new Intent(LessonListActivity.this, MainActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(LessonListActivity.this, InvestorsActivity.class));
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -174,6 +174,9 @@ public class PeoplesActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_project:
                 startActivity(new Intent(PeoplesActivity.this, ProjectActivity.class));
                 break;
+            case R.id.nav_investors:
+                startActivity(new Intent(PeoplesActivity.this, InvestorsActivity.class));
+                break;
             case R.id.nav_exit:
                 startActivity(new Intent(PeoplesActivity.this, MainActivity.class));
                 break;
