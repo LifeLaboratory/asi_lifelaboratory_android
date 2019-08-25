@@ -34,6 +34,6 @@ public interface UserService {
     @GET("/investors")
     Call<ArrayList<User>> getInvestors();
 
-    @GET("/category/{idCategory}")
-    Call<Category> getCategory(@Path("idCategory") Integer idCategory);
+    @GET("/user/category/{idUser}")
+    Call<List<Category>> getCategory(@Path("idUser") Integer idUser);
 }
